@@ -34,7 +34,7 @@ enum Spells
     SPELL_HATEFUL_STRIKE_25         = 59192,
     SPELL_FRENZY                    = 28131,
     SPELL_BERSERK                   = 26662,
-    SPELL_SLIME_BOLT                = 32309
+    SPELL_SLIME_BOLT                = 40095
 };
 
 enum Events
@@ -42,7 +42,8 @@ enum Events
     EVENT_HEALTH_CHECK              = 1,
     EVENT_HATEFUL_STRIKE            = 2,
     EVENT_SLIME_BOLT                = 3,
-    EVENT_BERSERK                   = 4
+    EVENT_BERSERK                   = 4,
+    EVENT_SUMMON_OOZE               = 5
 };
 
 enum Misc
@@ -177,7 +178,7 @@ public:
                     break;
                 case EVENT_SLIME_BOLT:
                     me->CastSpell(me, SPELL_SLIME_BOLT, false);
-                    events.Repeat(3s);
+                    events.Repeat(15s);
                     break;
                 case EVENT_HEALTH_CHECK:
                     if (me->GetHealthPct() <= 5)
@@ -188,6 +189,8 @@ public:
                     }
                     events.Repeat(1s);
                     break;
+                case EVENT_SUMMON_OOZE:
+                    //criar as spells de summon pra 10 e 25 man
             }
             DoMeleeAttackIfReady();
         }

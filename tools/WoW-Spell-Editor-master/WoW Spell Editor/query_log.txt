@@ -1,0 +1,284 @@
+[21:00:25.1801] CREATE TABLE IF NOT EXISTS `animationdata` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Name` TEXT CHARACTER SET utf8, `WeaponFlags` int(10) unsigned NOT NULL DEFAULT '0', `BodyFlags` int(10) unsigned NOT NULL DEFAULT '0', `Flags` int(10) unsigned NOT NULL DEFAULT '0', `FallbackAnimationID` int(10) unsigned NOT NULL DEFAULT '0', `PreviousAnimationID` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `areagroup` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `AreaId1` int(10) unsigned NOT NULL DEFAULT '0', `AreaId2` int(10) unsigned NOT NULL DEFAULT '0', `AreaId3` int(10) unsigned NOT NULL DEFAULT '0', `AreaId4` int(10) unsigned NOT NULL DEFAULT '0', `AreaId5` int(10) unsigned NOT NULL DEFAULT '0', `AreaId6` int(10) unsigned NOT NULL DEFAULT '0', `NextGroup` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `areatable` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Map` int(10) unsigned NOT NULL DEFAULT '0', `ParentAreaNum` int(10) unsigned NOT NULL DEFAULT '0', `ExploreFlag` int(10) unsigned NOT NULL DEFAULT '0', `Flags` int(10) unsigned NOT NULL DEFAULT '0', `SoundPreferences` int(10) unsigned NOT NULL DEFAULT '0', `SoundPreferencesUnderwater` int(10) unsigned NOT NULL DEFAULT '0', `SoundAmbience` int(10) unsigned NOT NULL DEFAULT '0', `ZoneMusic` int(10) unsigned NOT NULL DEFAULT '0', `zoneIntroMusic` int(10) unsigned NOT NULL DEFAULT '0', `ExplorationLevel` int(10) unsigned NOT NULL DEFAULT '0', `Name1` TEXT CHARACTER SET utf8, `Name2` TEXT CHARACTER SET utf8, `Name3` TEXT CHARACTER SET utf8, `Name4` TEXT CHARACTER SET utf8, `Name5` TEXT CHARACTER SET utf8, `Name6` TEXT CHARACTER SET utf8, `Name7` TEXT CHARACTER SET utf8, `Name8` TEXT CHARACTER SET utf8, `FactionGroupMask` int(10) unsigned NOT NULL DEFAULT '0', `Light` int(10) unsigned NOT NULL DEFAULT '0', `LiquidType1` int(10) unsigned NOT NULL DEFAULT '0', `LiquidType2` int(10) unsigned NOT NULL DEFAULT '0', `LiquidType3` int(10) unsigned NOT NULL DEFAULT '0', `LiquidType4` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `itemclass` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `SecondaryID` int(10) unsigned NOT NULL DEFAULT '0', `IsWeapon` int(10) unsigned NOT NULL DEFAULT '0', `Name1` TEXT CHARACTER SET utf8, `Name2` TEXT CHARACTER SET utf8, `Name3` TEXT CHARACTER SET utf8, `Name4` TEXT CHARACTER SET utf8, `Name5` TEXT CHARACTER SET utf8, `Name6` TEXT CHARACTER SET utf8, `Name7` TEXT CHARACTER SET utf8, `Name8` TEXT CHARACTER SET utf8, `NameFlags` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `itemsubclass` (`Class` int(10) unsigned NOT NULL DEFAULT '0', `subClass` int(10) unsigned NOT NULL DEFAULT '0', `prerequisiteProficiency` int(10) unsigned NOT NULL DEFAULT '0', `postrequisiteProficiency` int(10) unsigned NOT NULL DEFAULT '0', `flags` int(10) unsigned NOT NULL DEFAULT '0', `displayFlags` int(10) unsigned NOT NULL DEFAULT '0', `weaponParrySeq` int(10) unsigned NOT NULL DEFAULT '0', `weaponReadySeq` int(10) unsigned NOT NULL DEFAULT '0', `weaponAttackSeq` int(10) unsigned NOT NULL DEFAULT '0', `WeaponSwingSize` int(10) unsigned NOT NULL DEFAULT '0', `displayName1` TEXT CHARACTER SET utf8, `displayName2` TEXT CHARACTER SET utf8, `displayName3` TEXT CHARACTER SET utf8, `displayName4` TEXT CHARACTER SET utf8, `displayName5` TEXT CHARACTER SET utf8, `displayName6` TEXT CHARACTER SET utf8, `displayName7` TEXT CHARACTER SET utf8, `displayName8` TEXT CHARACTER SET utf8, `displayNameFlags` int(10) unsigned NOT NULL DEFAULT '0', `verboseName1` TEXT CHARACTER SET utf8, `verboseName2` TEXT CHARACTER SET utf8, `verboseName3` TEXT CHARACTER SET utf8, `verboseName4` TEXT CHARACTER SET utf8, `verboseName5` TEXT CHARACTER SET utf8, `verboseName6` TEXT CHARACTER SET utf8, `verboseName7` TEXT CHARACTER SET utf8, `verboseName8` TEXT CHARACTER SET utf8, `verboseNameFlags` int(10) unsigned NOT NULL DEFAULT '0') ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `skillraceclassinfo` (`Id` int(10) unsigned NOT NULL DEFAULT '0', `SkillLineDbcRecord` int(10) unsigned NOT NULL DEFAULT '0', `RaceMask` int(10) unsigned NOT NULL DEFAULT '0', `ClassMask` int(10) unsigned NOT NULL DEFAULT '0', `Flags` int(10) unsigned NOT NULL DEFAULT '0', `MinLevel` int(10) unsigned NOT NULL DEFAULT '0', `SkillTierId` int(10) unsigned NOT NULL DEFAULT '0', `SkillCostIndex` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`Id`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spell` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `SchoolMask` int(10) unsigned NOT NULL DEFAULT '0', `Category` int(10) unsigned NOT NULL DEFAULT '0', `castUI` int(11) NOT NULL DEFAULT '0', `Dispel` int(10) unsigned NOT NULL DEFAULT '0', `Mechanic` int(10) unsigned NOT NULL DEFAULT '0', `Attributes` int(10) unsigned NOT NULL DEFAULT '0', `AttributesEx` int(10) unsigned NOT NULL DEFAULT '0', `AttributesEx2` int(10) unsigned NOT NULL DEFAULT '0', `AttributesEx3` int(10) unsigned NOT NULL DEFAULT '0', `AttributesEx4` int(10) unsigned NOT NULL DEFAULT '0', `ShapeshiftMask` int(10) unsigned NOT NULL DEFAULT '0', `ShapeshiftExclude` int(10) unsigned NOT NULL DEFAULT '0', `Targets` int(10) unsigned NOT NULL DEFAULT '0', `TargetCreatureType` int(10) unsigned NOT NULL DEFAULT '0', `RequiresSpellFocus` int(10) unsigned NOT NULL DEFAULT '0', `CasterAuraState` int(10) unsigned NOT NULL DEFAULT '0', `TargetAuraState` int(10) unsigned NOT NULL DEFAULT '0', `CastingTimeIndex` int(10) unsigned NOT NULL DEFAULT '0', `RecoveryTime` int(10) unsigned NOT NULL DEFAULT '0', `CategoryRecoveryTime` int(10) unsigned NOT NULL DEFAULT '0', `InterruptFlags` int(10) unsigned NOT NULL DEFAULT '0', `AuraInterruptFlags` int(10) unsigned NOT NULL DEFAULT '0', `ChannelInterruptFlags` int(10) unsigned NOT NULL DEFAULT '0', `ProcFlags` int(10) unsigned NOT NULL DEFAULT '0', `ProcChance` int(10) unsigned NOT NULL DEFAULT '0', `ProcCharges` int(10) unsigned NOT NULL DEFAULT '0', `MaximumLevel` int(10) unsigned NOT NULL DEFAULT '0', `BaseLevel` int(10) unsigned NOT NULL DEFAULT '0', `SpellLevel` int(10) unsigned NOT NULL DEFAULT '0', `DurationIndex` int(10) unsigned NOT NULL DEFAULT '0', `PowerType` int(10) unsigned NOT NULL DEFAULT '0', `ManaCost` int(10) unsigned NOT NULL DEFAULT '0', `ManaCostPerLevel` int(10) unsigned NOT NULL DEFAULT '0', `ManaPerSecond` int(10) unsigned NOT NULL DEFAULT '0', `ManaPerSecondPerLevel` int(10) unsigned NOT NULL DEFAULT '0', `RangeIndex` int(10) unsigned NOT NULL DEFAULT '0', `Speed` int(10) unsigned NOT NULL DEFAULT '0', `ModalNextSpell` int(10) unsigned NOT NULL DEFAULT '0', `StackAmount` int(10) unsigned NOT NULL DEFAULT '0', `Totem1` int(10) unsigned NOT NULL DEFAULT '0', `Totem2` int(10) unsigned NOT NULL DEFAULT '0', `Reagent1` int(11) NOT NULL DEFAULT '0', `Reagent2` int(11) NOT NULL DEFAULT '0', `Reagent3` int(11) NOT NULL DEFAULT '0', `Reagent4` int(11) NOT NULL DEFAULT '0', `Reagent5` int(11) NOT NULL DEFAULT '0', `Reagent6` int(11) NOT NULL DEFAULT '0', `Reagent7` int(11) NOT NULL DEFAULT '0', `Reagent8` int(11) NOT NULL DEFAULT '0', `ReagentCount1` int(10) unsigned NOT NULL DEFAULT '0', `ReagentCount2` int(10) unsigned NOT NULL DEFAULT '0', `ReagentCount3` int(10) unsigned NOT NULL DEFAULT '0', `ReagentCount4` int(10) unsigned NOT NULL DEFAULT '0', `ReagentCount5` int(10) unsigned NOT NULL DEFAULT '0', `ReagentCount6` int(10) unsigned NOT NULL DEFAULT '0', `ReagentCount7` int(10) unsigned NOT NULL DEFAULT '0', `ReagentCount8` int(10) unsigned NOT NULL DEFAULT '0', `EquippedItemClass` int(11) NOT NULL DEFAULT '0', `EquippedItemSubClassMask` int(11) NOT NULL DEFAULT '0', `EquippedItemInventoryTypeMask` int(11) NOT NULL DEFAULT '0', `Effect1` int(10) unsigned NOT NULL DEFAULT '0', `Effect2` int(10) unsigned NOT NULL DEFAULT '0', `Effect3` int(10) unsigned NOT NULL DEFAULT '0', `EffectDieSides1` int(11) NOT NULL DEFAULT '0', `EffectDieSides2` int(11) NOT NULL DEFAULT '0', `EffectDieSides3` int(11) NOT NULL DEFAULT '0', `EffectBaseDice1` int(11) NOT NULL DEFAULT '0', `EffectBaseDice2` int(11) NOT NULL DEFAULT '0', `EffectBaseDice3` int(11) NOT NULL DEFAULT '0', `EffectDicePerLevel1` int(11) NOT NULL DEFAULT '0', `EffectDicePerLevel2` int(11) NOT NULL DEFAULT '0', `EffectDicePerLevel3` int(11) NOT NULL DEFAULT '0', `EffectRealPointsPerLevel1` FLOAT NOT NULL DEFAULT '0', `EffectRealPointsPerLevel2` FLOAT NOT NULL DEFAULT '0', `EffectRealPointsPerLevel3` FLOAT NOT NULL DEFAULT '0', `EffectBasePoints1` int(11) NOT NULL DEFAULT '0', `EffectBasePoints2` int(11) NOT NULL DEFAULT '0', `EffectBasePoints3` int(11) NOT NULL DEFAULT '0', `EffectMechanic1` int(10) unsigned NOT NULL DEFAULT '0', `EffectMechanic2` int(10) unsigned NOT NULL DEFAULT '0', `EffectMechanic3` int(10) unsigned NOT NULL DEFAULT '0', `EffectImplicitTargetA1` int(10) unsigned NOT NULL DEFAULT '0', `EffectImplicitTargetA2` int(10) unsigned NOT NULL DEFAULT '0', `EffectImplicitTargetA3` int(10) unsigned NOT NULL DEFAULT '0', `EffectImplicitTargetB1` int(10) unsigned NOT NULL DEFAULT '0', `EffectImplicitTargetB2` int(10) unsigned NOT NULL DEFAULT '0', `EffectImplicitTargetB3` int(10) unsigned NOT NULL DEFAULT '0', `EffectRadiusIndex1` int(10) unsigned NOT NULL DEFAULT '0', `EffectRadiusIndex2` int(10) unsigned NOT NULL DEFAULT '0', `EffectRadiusIndex3` int(10) unsigned NOT NULL DEFAULT '0', `EffectApplyAuraName1` int(10) unsigned NOT NULL DEFAULT '0', `EffectApplyAuraName2` int(10) unsigned NOT NULL DEFAULT '0', `EffectApplyAuraName3` int(10) unsigned NOT NULL DEFAULT '0', `EffectAmplitude1` int(10) unsigned NOT NULL DEFAULT '0', `EffectAmplitude2` int(10) unsigned NOT NULL DEFAULT '0', `EffectAmplitude3` int(10) unsigned NOT NULL DEFAULT '0', `EffectMultipleValue1` FLOAT NOT NULL DEFAULT '0', `EffectMultipleValue2` FLOAT NOT NULL DEFAULT '0', `EffectMultipleValue3` FLOAT NOT NULL DEFAULT '0', `EffectChainTarget1` int(10) unsigned NOT NULL DEFAULT '0', `EffectChainTarget2` int(10) unsigned NOT NULL DEFAULT '0', `EffectChainTarget3` int(10) unsigned NOT NULL DEFAULT '0', `EffectItemType1` int(10) unsigned NOT NULL DEFAULT '0', `EffectItemType2` int(10) unsigned NOT NULL DEFAULT '0', `EffectItemType3` int(10) unsigned NOT NULL DEFAULT '0', `EffectMiscValue1` int(11) NOT NULL DEFAULT '0', `EffectMiscValue2` int(11) NOT NULL DEFAULT '0', `EffectMiscValue3` int(11) NOT NULL DEFAULT '0', `EffectTriggerSpell1` int(10) unsigned NOT NULL DEFAULT '0', `EffectTriggerSpell2` int(10) unsigned NOT NULL DEFAULT '0', `EffectTriggerSpell3` int(10) unsigned NOT NULL DEFAULT '0', `EffectPointsPerComboPoint1` FLOAT NOT NULL DEFAULT '0', `EffectPointsPerComboPoint2` FLOAT NOT NULL DEFAULT '0', `EffectPointsPerComboPoint3` FLOAT NOT NULL DEFAULT '0', `SpellVisual1` int(10) unsigned NOT NULL DEFAULT '0', `SpellVisual2` int(10) unsigned NOT NULL DEFAULT '0', `SpellIconID` int(10) unsigned NOT NULL DEFAULT '0', `ActiveIconID` int(10) unsigned NOT NULL DEFAULT '0', `SpellPriority` int(10) unsigned NOT NULL DEFAULT '0', `SpellName0` TEXT CHARACTER SET utf8, `SpellName1` TEXT CHARACTER SET utf8, `SpellName2` TEXT CHARACTER SET utf8, `SpellName3` TEXT CHARACTER SET utf8, `SpellName4` TEXT CHARACTER SET utf8, `SpellName5` TEXT CHARACTER SET utf8, `SpellName6` TEXT CHARACTER SET utf8, `SpellName7` TEXT CHARACTER SET utf8, `SpellNameFlag0` int(10) unsigned NOT NULL DEFAULT '0', `SpellRank0` TEXT CHARACTER SET utf8, `SpellRank1` TEXT CHARACTER SET utf8, `SpellRank2` TEXT CHARACTER SET utf8, `SpellRank3` TEXT CHARACTER SET utf8, `SpellRank4` TEXT CHARACTER SET utf8, `SpellRank5` TEXT CHARACTER SET utf8, `SpellRank6` TEXT CHARACTER SET utf8, `SpellRank7` TEXT CHARACTER SET utf8, `SpellRankFlags0` int(10) unsigned NOT NULL DEFAULT '0', `SpellDescription0` TEXT CHARACTER SET utf8, `SpellDescription1` TEXT CHARACTER SET utf8, `SpellDescription2` TEXT CHARACTER SET utf8, `SpellDescription3` TEXT CHARACTER SET utf8, `SpellDescription4` TEXT CHARACTER SET utf8, `SpellDescription5` TEXT CHARACTER SET utf8, `SpellDescription6` TEXT CHARACTER SET utf8, `SpellDescription7` TEXT CHARACTER SET utf8, `SpellDescriptionFlags0` int(10) unsigned NOT NULL DEFAULT '0', `SpellToolTip0` TEXT CHARACTER SET utf8, `SpellToolTip1` TEXT CHARACTER SET utf8, `SpellToolTip2` TEXT CHARACTER SET utf8, `SpellToolTip3` TEXT CHARACTER SET utf8, `SpellToolTip4` TEXT CHARACTER SET utf8, `SpellToolTip5` TEXT CHARACTER SET utf8, `SpellToolTip6` TEXT CHARACTER SET utf8, `SpellToolTip7` TEXT CHARACTER SET utf8, `SpellToolTipFlags0` int(10) unsigned NOT NULL DEFAULT '0', `ManaCostPercentage` int(10) unsigned NOT NULL DEFAULT '0', `StartRecoveryCategory` int(10) unsigned NOT NULL DEFAULT '0', `StartRecoveryTime` int(10) unsigned NOT NULL DEFAULT '0', `MaximumTargetLevel` int(10) unsigned NOT NULL DEFAULT '0', `SpellFamilyName` int(10) unsigned NOT NULL DEFAULT '0', `SpellFamilyFlags1` int(10) unsigned NOT NULL DEFAULT '0', `SpellFamilyFlags2` int(10) unsigned NOT NULL DEFAULT '0', `MaximumAffectedTargets` int(10) unsigned NOT NULL DEFAULT '0', `DamageClass` int(10) unsigned NOT NULL DEFAULT '0', `PreventionType` int(10) unsigned NOT NULL DEFAULT '0', `StanceBarOrder` int(10) unsigned NOT NULL DEFAULT '0', `EffectDamageMultiplier1` FLOAT NOT NULL DEFAULT '0', `EffectDamageMultiplier2` FLOAT NOT NULL DEFAULT '0', `EffectDamageMultiplier3` FLOAT NOT NULL DEFAULT '0', `MinimumFactionId` int(10) unsigned NOT NULL DEFAULT '0', `MinimumReputation` int(10) unsigned NOT NULL DEFAULT '0', `RequiredAuraVision` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spellcasttimes` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `CastingTime` int(10) unsigned NOT NULL DEFAULT '0', `CastingTimePerLevel` int(10) unsigned NOT NULL DEFAULT '0', `MinimumCastingTime` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spellcategory` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Flags` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spelldescriptionvariables` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Formula` TEXT CHARACTER SET utf8, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spelldifficulty` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Difficulties1` int(10) unsigned NOT NULL DEFAULT '0', `Difficulties2` int(10) unsigned NOT NULL DEFAULT '0', `Difficulties3` int(10) unsigned NOT NULL DEFAULT '0', `Difficulties4` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spelldispeltype` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Name1` TEXT CHARACTER SET utf8, `Name2` TEXT CHARACTER SET utf8, `Name3` TEXT CHARACTER SET utf8, `Name4` TEXT CHARACTER SET utf8, `Name5` TEXT CHARACTER SET utf8, `Name6` TEXT CHARACTER SET utf8, `Name7` TEXT CHARACTER SET utf8, `Name8` TEXT CHARACTER SET utf8, `NameFlags` int(10) unsigned NOT NULL DEFAULT '0', `Mask` int(10) unsigned NOT NULL DEFAULT '0', `ImmunityName` TEXT CHARACTER SET utf8, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spellduration` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `BaseDuration` int(10) unsigned NOT NULL DEFAULT '0', `PerLevel` int(11) NOT NULL DEFAULT '0', `MaximumDuration` int(11) NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spellfocusobject` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Name1` TEXT CHARACTER SET utf8, `Name2` TEXT CHARACTER SET utf8, `Name3` TEXT CHARACTER SET utf8, `Name4` TEXT CHARACTER SET utf8, `Name5` TEXT CHARACTER SET utf8, `Name6` TEXT CHARACTER SET utf8, `Name7` TEXT CHARACTER SET utf8, `Name8` TEXT CHARACTER SET utf8, `Flags` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spellicon` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Name` TEXT CHARACTER SET utf8, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spellmechanic` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Name1` TEXT CHARACTER SET utf8, `Name2` TEXT CHARACTER SET utf8, `Name3` TEXT CHARACTER SET utf8, `Name4` TEXT CHARACTER SET utf8, `Name5` TEXT CHARACTER SET utf8, `Name6` TEXT CHARACTER SET utf8, `Name7` TEXT CHARACTER SET utf8, `Name8` TEXT CHARACTER SET utf8, `NameFlags` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spellradius` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Radius` FLOAT NOT NULL DEFAULT '0', `RadiusPerLevel` FLOAT NOT NULL DEFAULT '0', `MaximumRadius` FLOAT NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.1961] CREATE TABLE IF NOT EXISTS `spellrange` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `MinimumRange` FLOAT NOT NULL DEFAULT '0', `MaximumRange` FLOAT NOT NULL DEFAULT '0', `flags` int(10) unsigned NOT NULL DEFAULT '0', `Name1` TEXT CHARACTER SET utf8, `Name2` TEXT CHARACTER SET utf8, `Name3` TEXT CHARACTER SET utf8, `Name4` TEXT CHARACTER SET utf8, `Name5` TEXT CHARACTER SET utf8, `Name6` TEXT CHARACTER SET utf8, `Name7` TEXT CHARACTER SET utf8, `Name8` TEXT CHARACTER SET utf8, `NameFlags` int(10) unsigned NOT NULL DEFAULT '0', `ShortName1` TEXT CHARACTER SET utf8, `ShortName2` TEXT CHARACTER SET utf8, `ShortName3` TEXT CHARACTER SET utf8, `ShortName4` TEXT CHARACTER SET utf8, `ShortName5` TEXT CHARACTER SET utf8, `ShortName6` TEXT CHARACTER SET utf8, `ShortName7` TEXT CHARACTER SET utf8, `ShortName8` TEXT CHARACTER SET utf8, `ShortNameFlags` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2116] CREATE TABLE IF NOT EXISTS `spellrunecost` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `RuneCost1` int(10) unsigned NOT NULL DEFAULT '0', `RuneCost2` int(10) unsigned NOT NULL DEFAULT '0', `RuneCost3` int(10) unsigned NOT NULL DEFAULT '0', `RunePowerGain` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2116] CREATE TABLE IF NOT EXISTS `spellvisual` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `PrecastKit` int(10) unsigned NOT NULL DEFAULT '0', `CastKit` int(10) unsigned NOT NULL DEFAULT '0', `ImpactKit` int(10) unsigned NOT NULL DEFAULT '0', `StateKit` int(10) unsigned NOT NULL DEFAULT '0', `StateDoneKit` int(10) unsigned NOT NULL DEFAULT '0', `ChannelKit` int(10) unsigned NOT NULL DEFAULT '0', `HasMissile` int(10) unsigned NOT NULL DEFAULT '0', `MissileModel` int(10) unsigned NOT NULL DEFAULT '0', `MissilePathType` int(10) unsigned NOT NULL DEFAULT '0', `MissileDestinationAttachment` int(10) unsigned NOT NULL DEFAULT '0', `MissileSound` int(10) unsigned NOT NULL DEFAULT '0', `AnimEventSoundId` int(10) unsigned NOT NULL DEFAULT '0', `Flags` int(10) unsigned NOT NULL DEFAULT '0', `CasterImpactKit` int(10) unsigned NOT NULL DEFAULT '0', `TargetImpactKit` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2116] CREATE TABLE IF NOT EXISTS `spellvisualeffectname` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Name` TEXT CHARACTER SET utf8, `FilePath` TEXT CHARACTER SET utf8, `AreaEffectSize` int(10) unsigned NOT NULL DEFAULT '0', `Scale` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2116] CREATE TABLE IF NOT EXISTS `spellvisualkit` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `StartAnimId` int(10) unsigned NOT NULL DEFAULT '0', `AnimationId` int(10) unsigned NOT NULL DEFAULT '0', `HeadEffect` int(10) unsigned NOT NULL DEFAULT '0', `ChestEffect` int(10) unsigned NOT NULL DEFAULT '0', `BaseEffect` int(10) unsigned NOT NULL DEFAULT '0', `LeftHandEffect` int(10) unsigned NOT NULL DEFAULT '0', `RightHandEffect` int(10) unsigned NOT NULL DEFAULT '0', `BreathEffect` int(10) unsigned NOT NULL DEFAULT '0', `LeftWeaponEffect` int(10) unsigned NOT NULL DEFAULT '0', `RightWeaponEffect` int(10) unsigned NOT NULL DEFAULT '0', `SpecialEffect1` int(10) unsigned NOT NULL DEFAULT '0', `SpecialEffect2` int(10) unsigned NOT NULL DEFAULT '0', `SpecialEffect3` int(10) unsigned NOT NULL DEFAULT '0', `WorldEffect` int(10) unsigned NOT NULL DEFAULT '0', `SoundID` int(10) unsigned NOT NULL DEFAULT '0', `ShakeID` int(10) unsigned NOT NULL DEFAULT '0', `CharProc1` int(10) unsigned NOT NULL DEFAULT '0', `CharProc2` int(10) unsigned NOT NULL DEFAULT '0', `CharProc3` int(10) unsigned NOT NULL DEFAULT '0', `CharProc4` int(10) unsigned NOT NULL DEFAULT '0', `CharParamZero1` FLOAT NOT NULL DEFAULT '0', `CharParamZero2` FLOAT NOT NULL DEFAULT '0', `CharParamZero3` FLOAT NOT NULL DEFAULT '0', `CharParamOne1` FLOAT NOT NULL DEFAULT '0', `CharParamOne2` FLOAT NOT NULL DEFAULT '0', `CharParamOne3` FLOAT NOT NULL DEFAULT '0', `CharParamTwo1` FLOAT NOT NULL DEFAULT '0', `CharParamTwo2` FLOAT NOT NULL DEFAULT '0', `CharParamTwo3` FLOAT NOT NULL DEFAULT '0', `CharParamThree1` FLOAT NOT NULL DEFAULT '0', `CharParamThree2` FLOAT NOT NULL DEFAULT '0', `CharParamThree3` FLOAT NOT NULL DEFAULT '0', `Unknown1` FLOAT NOT NULL DEFAULT '0', `Flags` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2116] CREATE TABLE IF NOT EXISTS `spellvisualprecasttransitions` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `PrecastLoadAnimName` TEXT CHARACTER SET utf8, `PrecastHoldAnimName` TEXT CHARACTER SET utf8, PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2116] CREATE TABLE IF NOT EXISTS `talent` (`id` int(10) unsigned NOT NULL DEFAULT '0', `talentTabId` int(10) unsigned NOT NULL DEFAULT '0', `tierId` int(10) unsigned NOT NULL DEFAULT '0', `columnIndex` int(10) unsigned NOT NULL DEFAULT '0', `spellRank1` int(10) unsigned NOT NULL DEFAULT '0', `spellRank2` int(10) unsigned NOT NULL DEFAULT '0', `spellRank3` int(10) unsigned NOT NULL DEFAULT '0', `spellRank4` int(10) unsigned NOT NULL DEFAULT '0', `spellRank5` int(10) unsigned NOT NULL DEFAULT '0', `spellRank6` int(10) unsigned NOT NULL DEFAULT '0', `spellRank7` int(10) unsigned NOT NULL DEFAULT '0', `spellRank8` int(10) unsigned NOT NULL DEFAULT '0', `spellRank9` int(10) unsigned NOT NULL DEFAULT '0', `prereqTalent1` int(10) unsigned NOT NULL DEFAULT '0', `prereqTalent2` int(10) unsigned NOT NULL DEFAULT '0', `prereqTalent3` int(10) unsigned NOT NULL DEFAULT '0', `prereqRank1` int(10) unsigned NOT NULL DEFAULT '0', `prereqRank2` int(10) unsigned NOT NULL DEFAULT '0', `prereqRank3` int(10) unsigned NOT NULL DEFAULT '0', `flags` int(10) unsigned NOT NULL DEFAULT '0', `requiredSpellId` int(10) unsigned NOT NULL DEFAULT '0') ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2116] CREATE TABLE IF NOT EXISTS `talenttab` (`id` int(10) unsigned NOT NULL DEFAULT '0', `Name1` TEXT CHARACTER SET utf8, `Name2` TEXT CHARACTER SET utf8, `Name3` TEXT CHARACTER SET utf8, `Name4` TEXT CHARACTER SET utf8, `Name5` TEXT CHARACTER SET utf8, `Name6` TEXT CHARACTER SET utf8, `Name7` TEXT CHARACTER SET utf8, `Name8` TEXT CHARACTER SET utf8, `Flags` int(10) unsigned NOT NULL DEFAULT '0', `iconId` int(10) unsigned NOT NULL DEFAULT '0', `raceMask` int(10) unsigned NOT NULL DEFAULT '0', `classMask` int(10) unsigned NOT NULL DEFAULT '0', `orderIndex` int(10) unsigned NOT NULL DEFAULT '0', `backgroundFileName` TEXT CHARACTER SET utf8) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2116] CREATE TABLE IF NOT EXISTS `totemcategory` (`ID` int(10) unsigned NOT NULL DEFAULT '0', `Name1` TEXT CHARACTER SET utf8, `Name2` TEXT CHARACTER SET utf8, `Name3` TEXT CHARACTER SET utf8, `Name4` TEXT CHARACTER SET utf8, `Name5` TEXT CHARACTER SET utf8, `Name6` TEXT CHARACTER SET utf8, `Name7` TEXT CHARACTER SET utf8, `Name8` TEXT CHARACTER SET utf8, `NameFlags` int(10) unsigned NOT NULL DEFAULT '0', `CategoryType` int(10) unsigned NOT NULL DEFAULT '0', `CategoryMask` int(10) unsigned NOT NULL DEFAULT '0', PRIMARY KEY (`ID`)) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPRESSED KEY_BLOCK_SIZE=8;
+[21:00:25.2987] SELECT id,SpellFamilyName,SpellFamilyFlags1,SpellFamilyFlags2 FROM spell
+[21:00:25.3503] SELECT `id`,`SpellName0`,`SpellName1`,`SpellName2`,`SpellName3`,`SpellName4`,`SpellName5`,`SpellName6`,`SpellName7` FROM `spell` WHERE `ID` = '5'
+[21:00:25.9084] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 0, 100
+[21:00:25.9084] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 100, 5000
+[21:00:25.9179] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 5100, 5000
+[21:00:25.9525] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 10100, 5000
+[21:00:25.9725] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 15100, 5000
+[21:00:26.0010] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 20100, 5000
+[21:00:26.0256] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 25100, 5000
+[21:00:44.9066] SELECT COUNT(*) FROM `spell` WHERE `ID` = '50100'
+[21:00:44.9066] SELECT * FROM `spell` WHERE `ID` = '10892' LIMIT 1
+[21:00:44.9066] INSERT INTO `spell` VALUES ('50100', "5", "0", "0", "1", "0", "327680", "0", "524288", "0", "0", "134217728", "0", "0", "0", "0", "0", "0", "1", "0", "0", "8", "0", "0", "0", "100", "0", "0", "42", "42", "85", "0", "305", "0", "0", "0", "4", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "-1", "-1", "0", "6", "0", "0", "1", "0", "0", "1", "0", "0", "0", "0", "0", "0", "0", "0", "84", "0", "0", "0", "0", "0", "6", "0", "0", "0", "0", "0", "0", "0", "0", "3", "0", "0", "3000", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "71", "0", "234", "0", "0", "Shadow Word: Pain", "", "", "", "", "", "", "", "4128894", "Rank 6", "", "", "", "", "", "", "", "4128894", "A word of darkness that causes $o1 Shadow damage over $d.", "", "", "", "", "", "", "", "4128894", "$s1 Shadow damage every $t1 seconds.", "", "", "", "", "", "", "", "4128894", "0", "133", "1500", "0", "6", "32768", "0", "0", "1", "1", "4294967295", "1", "1", "1", "0", "0", "0")
+[21:00:44.9066] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 0, 100
+[21:00:44.9146] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 100, 5000
+[21:00:44.9146] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 5100, 5000
+[21:00:44.9446] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 10100, 5000
+[21:00:44.9706] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 15100, 5000
+[21:00:44.9996] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 20100, 5000
+[21:00:45.0246] SELECT `id`,`SpellName0`,`SpellIconID` FROM `spell` ORDER BY `id` LIMIT 25100, 5000
+[21:00:48.3604] SELECT * FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3844] SELECT * FROM `spell` WHERE `ID` = '50983' LIMIT 1
+[21:00:48.3844] SELECT `Category` FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3844] SELECT `Dispel` FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3844] SELECT `Mechanic` FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3844] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3844] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3984] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3984] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3984] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '50983'
+[21:00:48.3984] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '50983'
+[21:00:54.5028] SELECT * FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5028] SELECT * FROM `spell` WHERE `ID` = '20128'
+[21:00:54.5028] SELECT * FROM `spell` WHERE `ID` = '20128'
+[21:00:54.5078] SELECT * FROM `spell` WHERE `ID` = '20128'
+[21:00:54.5078] SELECT * FROM `spell` WHERE `ID` = '50990' LIMIT 1
+[21:00:54.5078] SELECT * FROM `spell` WHERE `ID` = '20128'
+[21:00:54.5078] SELECT * FROM `spell` WHERE `ID` = '20128'
+[21:00:54.5078] SELECT * FROM `spell` WHERE `ID` = '20128'
+[21:00:54.5078] SELECT `Category` FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5078] SELECT `Dispel` FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5078] SELECT `Mechanic` FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5078] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5078] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5078] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5078] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5078] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '50990'
+[21:00:54.5078] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '50990'
+[21:00:58.1256] SELECT * FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1256] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:00:58.1256] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:00:58.1336] SELECT `Category` FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1336] SELECT `Dispel` FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1336] SELECT `Mechanic` FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1336] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1336] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1336] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1336] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1336] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '50100'
+[21:00:58.1336] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '50100'
+[21:01:53.0409] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:01:53.0409] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:01:54.5177] SELECT `SpellIconID`,`ActiveIconID` FROM `spell` WHERE `ID` = '50100'
+[21:02:18.8374] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:02:18.8374] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:02:22.3065] UPDATE `spell` SET `SpellIconID` = '76' WHERE `ID` = '50100'
+[21:02:24.0690] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:02:24.0690] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:02:24.7751] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:02:24.7751] SELECT * FROM `spell` WHERE `ID` = '50100' LIMIT 1
+[21:02:25.1216] SELECT 1
+[21:04:25.1403] SELECT 1
+[21:05:50.4519] SELECT * FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4519] SELECT * FROM `spell` WHERE `ID` = '9512' LIMIT 1
+[21:05:50.4519] SELECT * FROM `spell` WHERE `ID` = '9512' LIMIT 1
+[21:05:50.4519] SELECT `Category` FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4519] SELECT `Dispel` FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4519] SELECT `Mechanic` FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4519] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4609] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4609] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4609] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4609] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '9512'
+[21:05:50.4609] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '9512'
+[21:06:09.1221] SELECT * FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1341] SELECT * FROM `spell` WHERE `ID` = '24571' LIMIT 1
+[21:06:09.1341] SELECT `Category` FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1491] SELECT `Dispel` FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1491] SELECT `Mechanic` FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1491] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1491] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1491] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1491] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1491] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '24571'
+[21:06:09.1491] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '24571'
+[21:06:25.1457] SELECT 1
+[21:06:56.6828] SELECT * FROM `spell` WHERE `ID` = '24532'
+[21:06:56.8100] SELECT * FROM `spell` WHERE `ID` = '24532' LIMIT 1
+[21:06:56.8716] SELECT `Category` FROM `spell` WHERE `ID` = '24532'
+[21:06:56.8716] SELECT `Dispel` FROM `spell` WHERE `ID` = '24532'
+[21:06:56.8716] SELECT `Mechanic` FROM `spell` WHERE `ID` = '24532'
+[21:06:56.8716] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '24532'
+[21:06:56.8716] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '24532'
+[21:06:56.8716] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '24532'
+[21:06:56.8716] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '24532'
+[21:06:56.8716] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '24532'
+[21:06:56.9352] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '24532'
+[21:07:19.3757] SELECT * FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3757] SELECT * FROM `spell` WHERE `ID` = '24529' LIMIT 1
+[21:07:19.3757] SELECT * FROM `spell` WHERE `ID` = '24529' LIMIT 1
+[21:07:19.3757] SELECT `Category` FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3757] SELECT `Dispel` FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3757] SELECT `Mechanic` FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3832] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3832] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3832] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3832] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3832] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '24529'
+[21:07:19.3832] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '24529'
+[21:08:07.8015] SELECT * FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8165] SELECT * FROM `spell` WHERE `ID` = '23493' LIMIT 1
+[21:08:07.8220] SELECT `Category` FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8220] SELECT `Dispel` FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8220] SELECT `Mechanic` FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8220] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8220] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8220] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8365] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8365] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '23493'
+[21:08:07.8365] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '23493'
+[21:08:25.1515] SELECT 1
+[21:10:25.1665] SELECT 1
+[21:11:28.7735] SELECT * FROM `spell` WHERE `ID` = '17355'
+[21:11:28.7735] SELECT * FROM `spell` WHERE `ID` = '17355' LIMIT 1
+[21:11:28.7735] SELECT `Category` FROM `spell` WHERE `ID` = '17355'
+[21:11:28.7735] SELECT `Dispel` FROM `spell` WHERE `ID` = '17355'
+[21:11:28.7735] SELECT `Mechanic` FROM `spell` WHERE `ID` = '17355'
+[21:11:28.7735] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '17355'
+[21:11:28.7735] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '17355'
+[21:11:28.8005] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '17355'
+[21:11:28.8055] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '17355'
+[21:11:28.8055] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '17355'
+[21:11:28.8055] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '17355'
+[21:11:59.6751] SELECT * FROM `spell` WHERE `ID` = '17359'
+[21:11:59.6751] SELECT * FROM `spell` WHERE `ID` = '17360'
+[21:11:59.6751] SELECT * FROM `spell` WHERE `ID` = '17360'
+[21:11:59.6796] SELECT * FROM `spell` WHERE `ID` = '17360'
+[21:11:59.6796] SELECT * FROM `spell` WHERE `ID` = '17359' LIMIT 1
+[21:11:59.6796] SELECT * FROM `spell` WHERE `ID` = '17359' LIMIT 1
+[21:11:59.6796] SELECT * FROM `spell` WHERE `ID` = '17360'
+[21:11:59.6796] SELECT * FROM `spell` WHERE `ID` = '17360'
+[21:11:59.6796] SELECT * FROM `spell` WHERE `ID` = '17360'
+[21:11:59.7452] SELECT `Category` FROM `spell` WHERE `ID` = '17359'
+[21:11:59.7612] SELECT `Dispel` FROM `spell` WHERE `ID` = '17359'
+[21:11:59.7612] SELECT `Mechanic` FROM `spell` WHERE `ID` = '17359'
+[21:11:59.7612] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '17359'
+[21:11:59.7612] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '17359'
+[21:11:59.7612] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '17359'
+[21:11:59.7612] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '17359'
+[21:11:59.7612] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '17359'
+[21:11:59.7612] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '17359'
+[21:12:00.0822] SELECT * FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT * FROM `spell` WHERE `ID` = '17360' LIMIT 1
+[21:12:00.0862] SELECT * FROM `spell` WHERE `ID` = '17360' LIMIT 1
+[21:12:00.0862] SELECT `Category` FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT `Dispel` FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT `Mechanic` FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '17360'
+[21:12:00.0862] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '17360'
+[21:12:11.9977] SELECT * FROM `spell` WHERE `ID` = '17447'
+[21:12:11.9977] SELECT * FROM `spell` WHERE `ID` = '17447' LIMIT 1
+[21:12:11.9977] SELECT * FROM `spell` WHERE `ID` = '17447' LIMIT 1
+[21:12:12.0077] SELECT `Category` FROM `spell` WHERE `ID` = '17447'
+[21:12:12.0077] SELECT `Dispel` FROM `spell` WHERE `ID` = '17447'
+[21:12:12.0077] SELECT `Mechanic` FROM `spell` WHERE `ID` = '17447'
+[21:12:12.0077] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '17447'
+[21:12:12.0077] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '17447'
+[21:12:12.0293] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '17447'
+[21:12:12.0398] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '17447'
+[21:12:12.0398] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '17447'
+[21:12:12.0398] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '17447'
+[21:12:23.6253] SELECT * FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6328] SELECT * FROM `spell` WHERE `ID` = '24853' LIMIT 1
+[21:12:23.6489] SELECT * FROM `spell` WHERE `ID` = '24853' LIMIT 1
+[21:12:23.6489] SELECT `Category` FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6489] SELECT `Dispel` FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6489] SELECT `Mechanic` FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6489] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6489] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6709] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6804] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6804] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '24853'
+[21:12:23.6804] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '24853'
+[21:12:25.1746] SELECT 1
+[21:12:48.1146] SELECT * FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1251] SELECT * FROM `spell` WHERE `ID` = '29131' LIMIT 1
+[21:12:48.1251] SELECT `Category` FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1251] SELECT `Dispel` FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1251] SELECT `Mechanic` FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1336] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1336] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1336] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1486] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1486] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '29131'
+[21:12:48.1486] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '29131'
+[21:13:08.9847] SELECT * FROM `spell` WHERE `ID` = '23108'
+[21:13:08.9952] SELECT * FROM `spell` WHERE `ID` = '23108' LIMIT 1
+[21:13:08.9952] SELECT `Category` FROM `spell` WHERE `ID` = '23108'
+[21:13:08.9952] SELECT `Dispel` FROM `spell` WHERE `ID` = '23108'
+[21:13:08.9952] SELECT `Mechanic` FROM `spell` WHERE `ID` = '23108'
+[21:13:08.9952] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '23108'
+[21:13:08.9952] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '23108'
+[21:13:09.0122] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '23108'
+[21:13:09.0243] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '23108'
+[21:13:09.0243] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '23108'
+[21:13:09.0243] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '23108'
+[21:13:26.7515] SELECT * FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7590] SELECT * FROM `spell` WHERE `ID` = '19634' LIMIT 1
+[21:13:26.7745] SELECT * FROM `spell` WHERE `ID` = '19634' LIMIT 1
+[21:13:26.7745] SELECT `Category` FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7745] SELECT `Dispel` FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7895] SELECT `Mechanic` FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7895] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7895] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7895] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7895] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7895] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '19634'
+[21:13:26.7895] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '19634'
+[21:14:25.1816] SELECT 1
+[21:14:39.8269] SELECT * FROM `spell` WHERE `ID` = '25694'
+[21:14:40.0157] SELECT * FROM `spell` WHERE `ID` = '25694' LIMIT 1
+[21:14:40.0788] SELECT * FROM `spell` WHERE `ID` = '25694' LIMIT 1
+[21:14:40.1418] SELECT `Category` FROM `spell` WHERE `ID` = '25694'
+[21:14:40.1418] SELECT `Dispel` FROM `spell` WHERE `ID` = '25694'
+[21:14:40.1729] SELECT `Mechanic` FROM `spell` WHERE `ID` = '25694'
+[21:14:40.1729] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '25694'
+[21:14:40.1729] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '25694'
+[21:14:40.1729] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '25694'
+[21:14:40.1729] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '25694'
+[21:14:40.1729] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '25694'
+[21:14:40.1729] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '25694'
+[21:14:50.4262] SELECT * FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4332] SELECT * FROM `spell` WHERE `ID` = '24884' LIMIT 1
+[21:14:50.4493] SELECT * FROM `spell` WHERE `ID` = '24884' LIMIT 1
+[21:14:50.4493] SELECT `Category` FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4493] SELECT `Dispel` FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4618] SELECT `Mechanic` FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4618] SELECT `RequiresSpellFocus` FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4618] SELECT `CastingTimeIndex` FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4618] SELECT `DurationIndex` FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4618] SELECT `RangeIndex` FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4618] SELECT `EquippedItemClass` FROM `spell` WHERE `ID` = '24884'
+[21:14:50.4618] SELECT `EffectRadiusIndex1`, `EffectRadiusIndex2`, `EffectRadiusIndex3` FROM `spell` WHERE `ID` = '24884'
+[21:16:25.1852] SELECT 1
+[21:18:25.1928] SELECT 1

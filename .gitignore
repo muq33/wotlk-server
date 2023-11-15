@@ -92,3 +92,7 @@ local.properties
 #  !modules/yourmodule
 #
 # ==================
+
+!build/bin/Release/maps
+!build/bin/Release/mmaps
+!build/bin/Release/vmaps
