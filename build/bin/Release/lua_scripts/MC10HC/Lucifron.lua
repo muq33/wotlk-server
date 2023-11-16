@@ -1,4 +1,6 @@
-local Lucifron = {}
+local Lucifron = {
+    id = 9000002
+}
 
 local Spells = {
     IMPENDING_DOOM    = 19702,
@@ -22,22 +24,28 @@ local  function sample (i, j, n)
 -----------------------------------------------------------------------------------
 function Lucifron.ImpendingDoom(eventId,delay,calls, creature)
     local all_targets = creature:GetAITargets()
-    local sample_targets = sample(1,#all_targets, 4)
-
-    for i=1,#sample_targets do
-        creature:CastSpell(all_targets[sample_targets[i]], Spells.IMPENDING_DOOM, true)
+    if(#all_targets < 2)then
+        creature:CastSpell(all_targets[1], Spells.IMPENDING_DOOM, true)
+    else
+        local sample_targets = sample(1,#all_targets, 4)
+        for i=1,#sample_targets do
+            creature:CastSpell(all_targets[sample_targets[i]], Spells.IMPENDING_DOOM, true)
+        end
+        
     end
-    creature:RegisterEvent(Lucifron.ImpendingDoom, math.random(6000, 11000), 0)
 end
 
 function Lucifron.LucrifronCurse(eventId, delay, calls, creature)
     local all_targets = creature:GetAITargets()
-    local sample_targets = sample(1,#all_targets, 2)
-
-    for i=1,#sample_targets do
-        creature:CastSpell(all_targets[sample_targets[i]], Spells.LUCIFRON_CURSE, true)
+    if(#all_targets < 2)then
+        creature:CastSpell(all_targets[1], Spells.LUCIFRON_CURSE, true)
+    else
+        local sample_targets = sample(1,#all_targets, 2)
+        for i=1,#sample_targets do
+            creature:CastSpell(all_targets[sample_targets[i]], Spells.LUCIFRON_CURSE, true)
+        end
     end
-    creature:RegisterEvent(Lucifron.LucrifronCurse, math.random(11000, 14000), 0)
+
 end
 
 function Lucifron.ShadowShock(eventId, delay, calls, creature)
@@ -45,8 +53,8 @@ function Lucifron.ShadowShock(eventId, delay, calls, creature)
 end
 
 function Lucifron.OnEnterCombat(event, creature, target)
-    creature:RegisterEvent(Lucifron.ImpendingDoom, math.random(6000, 11000), 0)
-    creature:RegisterEvent(Lucifron.LucrifronCurse, math.random(11000, 14000), 0)
+    creature:RegisterEvent(Lucifron.ImpendingDoom, {6000, 11000}, 0)
+    creature:RegisterEvent(Lucifron.LucrifronCurse, {11000, 14000}, 0)
     creature:RegisterEvent(Lucifron.ShadowShock, 5000, 0)
 end
 
@@ -65,7 +73,7 @@ end
 --    end
 --end
 
-RegisterCreatureEvent(9000001, 1, Lucifron.OnEnterCombat)
-RegisterCreatureEvent(9000001, 2, Lucifron.OnLeaveCombat)
-RegisterCreatureEvent(9000001, 4, Lucifron.OnDied)
+RegisterCreatureEvent(Lucifron.id, 1, Lucifron.OnEnterCombat)
+RegisterCreatureEvent(Lucifron.id, 2, Lucifron.OnLeaveCombat)
+RegisterCreatureEvent(Lucifron.id, 4, Lucifron.OnDied)
 -- RegisterCreatureEvent(16028, 5, Lucifron.CheckHealth)

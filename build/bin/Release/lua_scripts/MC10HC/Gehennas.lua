@@ -1,9 +1,12 @@
-local Gehennas = {}
+--- Main boss ---
+local Gehennas = {
+    id = 9000003
+}
 
 local Spells = {
-    SPELL_GEHENNAS_CURSE        = 19716,
-    SPELL_RAIN_OF_FIRE          = 19717,
-    SPELL_SHADOW_BOLT_VICTIM    = 19729 --Precisa ser refeita
+    GEHENNAS_CURSE        = 19716,
+    RAIN_OF_FIRE          = 19717,
+    SHADOW_BOLT           = 19729 --Precisa ser refeita
 }
 
 local  function sample (i, j, n)
@@ -20,34 +23,41 @@ local  function sample (i, j, n)
  end
 
 -----------------------------------------------------------------------------------
-function Gehennas.ImpendingDoom(eventId,delay,calls, creature)
+function Gehennas.GehennasCurse(eventId,delay,calls, creature)
     local all_targets = creature:GetAITargets()
-    local sample_targets = sample(1,#all_targets, 4)
+    if(#all_targets < 2)then
+        creature:CastSpell(all_targets[1], Spells.GEHENNAS_CURSE, true)
+    else
+        local sample_targets = sample(1,#all_targets, 2)
 
-    for i=1,#sample_targets do
-        creature:CastSpell(all_targets[sample_targets[i]], Spells.IMPENDING_DOOM, true)
+        for i=1,#sample_targets do
+            creature:CastSpell(all_targets[sample_targets[i]], Spells.GEHENNAS_CURSE, true)
+        end
     end
-    creature:RegisterEvent(Gehennas.ImpendingDoom, math.random(6000, 11000), 0)
 end
 
-function Gehennas.LucrifronCurse(eventId, delay, calls, creature)
+function Gehennas.RainfOfFire(eventId, delay, calls, creature)
     local all_targets = creature:GetAITargets()
-    local sample_targets = sample(1,#all_targets, 2)
+    if(#all_targets < 2)then
+        creature:CastSpell(all_targets[1], Spells.RAIN_OF_FIRE, true)
+    else
+        local sample_targets = sample(1,#all_targets, 2)
 
-    for i=1,#sample_targets do
-        creature:CastSpell(all_targets[sample_targets[i]], Spells.Gehennas_CURSE, true)
+        for i=1,#sample_targets do
+            creature:CastSpell(all_targets[sample_targets[i]], Spells.RAIN_OF_FIRE, true)
+        end
     end
-    creature:RegisterEvent(Gehennas.LucrifronCurse, math.random(11000, 14000), 0)
+    
 end
 
-function Gehennas.ShadowShock(eventId, delay, calls, creature)
-    creature:CastSpell(creature:GetVictim(), Spells.SHADOW_SHOCK, true)
+function Gehennas.ShadowBolt(eventId, delay, calls, creature)
+    creature:CastSpell(creature:GetVictim(), Spells.SHADOW_BOLT, true)
 end
 
 function Gehennas.OnEnterCombat(event, creature, target)
-    creature:RegisterEvent(Gehennas.ImpendingDoom, math.random(6000, 11000), 0)
-    creature:RegisterEvent(Gehennas.LucrifronCurse, math.random(11000, 14000), 0)
-    creature:RegisterEvent(Gehennas.ShadowShock, 5000, 0)
+    creature:RegisterEvent(Gehennas.GehennasCurse, {6000, 9000}, 0)
+    creature:RegisterEvent(Gehennas.RainfOfFire, 15000, 0)
+    creature:RegisterEvent(Gehennas.ShadowBolt, {3000, 5000}, 0)
 end
 
 function Gehennas.OnLeaveCombat(event, creature)
@@ -58,14 +68,41 @@ function Gehennas.OnDied(event, creature, killer)
     creature:RemoveEvents()
 end
 
--- function Gehennas.CheckHealth(event, creature)
---    if (creature:HealthBelowPct(20)) then
---        creature:SendUnitYell("Gehennas want to play!", 0)
---       creature:CastSpell(creature, 41305, true)
---    end
---end
 
-RegisterCreatureEvent(9000001, 1, Gehennas.OnEnterCombat)
-RegisterCreatureEvent(9000001, 2, Gehennas.OnLeaveCombat)
-RegisterCreatureEvent(9000001, 4, Gehennas.OnDied)
--- RegisterCreatureEvent(16028, 5, Gehennas.CheckHealth)
+RegisterCreatureEvent(Gehennas.id, 1, Gehennas.OnEnterCombat)
+RegisterCreatureEvent(Gehennas.id, 2, Gehennas.OnLeaveCombat)
+RegisterCreatureEvent(Gehennas.id, 4, Gehennas.OnDied)
+
+-----------------------------------------------------------------------------------
+
+---Adds---
+local Flamewalker = {
+    id = 9000004
+}
+
+
+local Flamewalker_Spells = {
+    FIST_OF_RAGNAROS        = 20277
+}
+
+
+function Flamewalker.FistOfRagnaros(eventId, delay, calls, creature)
+    creature:CastSpell(creature:GetVictim(), Flamewalker_Spells.FIST_OF_RAGNAROS, true)
+end
+function Flamewalker.OnEnterCombat(event, creature, target)
+    creature:RegisterEvent(Flamewalker.FistOfRagnaros, 10000, 0)
+end
+
+function Flamewalker.OnLeaveCombat(event, creature)
+    creature:RemoveEvents()
+end
+
+function Flamewalker.OnDied(event, creature, killer)
+    creature:RemoveEvents()
+end
+
+
+
+RegisterCreatureEvent(Flamewalker.id, 1, Flamewalker.OnEnterCombat)
+RegisterCreatureEvent(Flamewalker.id, 2, Flamewalker.OnLeaveCombat)
+RegisterCreatureEvent(Flamewalker.id, 4, Flamewalker.OnDied)

@@ -1,4 +1,6 @@
-local Magmadar = {}
+local Magmadar = {
+    id = 9000001
+}
 
 local Spells = {
     FRENZY = 19451,
@@ -45,7 +47,7 @@ end
 --    end
 --end
 
-RegisterCreatureEvent(9000001, 1, Magmadar.OnEnterCombat)
-RegisterCreatureEvent(9000001, 2, Magmadar.OnLeaveCombat)
-RegisterCreatureEvent(9000001, 4, Magmadar.OnDied)
+RegisterCreatureEvent(Magmadar.id, 1, Magmadar.OnEnterCombat)
+RegisterCreatureEvent(Magmadar.id, 2, Magmadar.OnLeaveCombat)
+RegisterCreatureEvent(Magmadar.id, 4, Magmadar.OnDied)
 -- RegisterCreatureEvent(16028, 5, Magmadar.CheckHealth)
