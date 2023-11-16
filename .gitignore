@@ -97,4 +97,5 @@ local.properties
 !/build/bin
 !/build/bin/Release
 !/build/bin/Release/dbc
+!/build/bin/Release/lua_scripts
 /tools/*
