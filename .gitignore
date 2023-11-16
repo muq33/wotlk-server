@@ -92,6 +92,9 @@ local.properties
 #
 # ==================
 
-build/
-!build/bin/Release/dbc
+/build/*
+/build/bin/Release/*
+!/build/bin
+!/build/bin/Release
+!/build/bin/Release/dbc
 /tools/*
