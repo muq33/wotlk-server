@@ -10,7 +10,6 @@
 !/modules/CMakeLists.txt
 !/modules/*.h
 !/modules/*.cmake
-/build*/
 /var/*
 !/var/build/.gitkeep
 !/var/ccache/.gitkeep
@@ -79,7 +78,7 @@ local.properties
 .loadpath
 .project
 .cproject
-
+/tools/
 
 # ==================
 #
@@ -93,6 +92,6 @@ local.properties
 #
 # ==================
 
-!build/bin/Release/maps
-!build/bin/Release/mmaps
-!build/bin/Release/vmaps
+/build/bin/Release/maps
+/build/bin/Release/mmaps
+/build/bin/Release/vmaps
