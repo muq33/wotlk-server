@@ -78,7 +78,7 @@ local.properties
 .loadpath
 .project
 .cproject
-/tools/
+
 
 # ==================
 #
@@ -92,6 +92,6 @@ local.properties
 #
 # ==================
 
-/build/bin/Release/maps
-/build/bin/Release/mmaps
-/build/bin/Release/vmaps
+build/
+!build/bin/Release/dbc
+/tools/*

@@ -1,3 +1,0 @@
-# MovieFileData.dbc structure for 3.3.5a WOTLK
-uint ID
-uint Resolution

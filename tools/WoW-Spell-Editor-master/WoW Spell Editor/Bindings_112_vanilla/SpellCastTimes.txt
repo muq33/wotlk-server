@@ -1,5 +1,0 @@
-# SpellCastTimes.dbc structure for 1.12.1
-uint ID
-uint CastingTime
-uint CastingTimePerLevel
-uint MinimumCastingTime

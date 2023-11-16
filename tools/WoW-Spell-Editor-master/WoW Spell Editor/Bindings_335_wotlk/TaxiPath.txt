@@ -1,4 +1,0 @@
-uint id
-uint fromTaxiNode
-uint toTaxiNode
-uint cost

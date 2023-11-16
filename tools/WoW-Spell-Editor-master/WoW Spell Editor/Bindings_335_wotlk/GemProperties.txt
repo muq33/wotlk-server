@@ -1,5 +1,0 @@
-uint ID
-uint SpellItemEnchantmentRef
-uint maxCount_inv
-uint maxCount_item
-uint gemType

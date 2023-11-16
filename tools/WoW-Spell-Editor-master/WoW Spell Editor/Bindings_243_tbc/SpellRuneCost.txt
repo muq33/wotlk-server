@@ -1,6 +1,0 @@
-# SpellRuneCost.dbc structure for 2.4.3
-uint ID
-uint RuneCost1
-uint RuneCost2
-uint RuneCost3
-uint RunePowerGain

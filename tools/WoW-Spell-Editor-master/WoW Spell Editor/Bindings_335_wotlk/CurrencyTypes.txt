@@ -1,4 +1,0 @@
-uint id
-uint item
-uint category
-uint bitIndex
