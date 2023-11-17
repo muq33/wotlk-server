@@ -5,7 +5,7 @@ local Lucifron = {
 local Spells = {
     IMPENDING_DOOM    = 19702,
     LUCIFRON_CURSE    = 19703,
-    SHADOW_SHOCK      = 20603, --Precisa ser refeita
+    SHADOW_SHOCK      = 20603,
 }
 
 local  function sample (i, j, n)
@@ -49,7 +49,7 @@ function Lucifron.LucrifronCurse(eventId, delay, calls, creature)
 end
 
 function Lucifron.ShadowShock(eventId, delay, calls, creature)
-    creature:CastSpell(creature:GetVictim(), Spells.SHADOW_SHOCK, true)
+    creature:CastCustomSpell(creature:GetVictim(), Spells.SHADOW_SHOCK, true, 4500)
 end
 
 function Lucifron.OnEnterCombat(event, creature, target)
