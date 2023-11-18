@@ -164,7 +164,7 @@ public:
 
             if (Unit* caster = GetUnitOwner())
             {
-                //The pulses come about 1 second apart and last for 10 seconds. Damage starts at 500 damage per pulse and increases by 500 every other pulse (500, 500, 1000, 1000, 1500, etc.). (Source: Wowwiki)
+                //The pulses come about 1 second apart and last for 10 seconds. Damage starts at 1000 damage per pulse and increases by 1000 every other pulse (500, 500, 1000, 1000, 1500, etc.). (Source: Wowwiki)
                 int32 multiplier = 1;
                 switch (aurEff->GetTickNumber())
                 {
@@ -184,7 +184,7 @@ public:
                         break;
                 }
 
-                caster->CastCustomSpell(SPELL_INFERNO_DUMMY_EFFECT, SPELLVALUE_BASE_POINT0, 500 * multiplier, (Unit*)nullptr, TRIGGERED_NONE, nullptr, aurEff);
+                caster->CastCustomSpell(SPELL_INFERNO_DUMMY_EFFECT, SPELLVALUE_BASE_POINT0, 1000 * multiplier, (Unit*)nullptr, TRIGGERED_NONE, nullptr, aurEff);
             }
         }
 

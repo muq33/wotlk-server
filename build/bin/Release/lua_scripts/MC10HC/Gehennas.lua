@@ -39,19 +39,19 @@ end
 function Gehennas.RainfOfFire(eventId, delay, calls, creature)
     local all_targets = creature:GetAITargets()
     if(#all_targets < 2)then
-        creature:CastCustomSpell(all_targets[1], Spells.RAIN_OF_FIRE, true, 3500)
+        creature:CastCustomSpell(all_targets[1], Spells.RAIN_OF_FIRE, true, 4000)
     else
         local sample_targets = sample(1,#all_targets, 2)
 
         for i=1,#sample_targets do
-            creature:CastCustomSpell(all_targets[sample_targets[i]], Spells.RAIN_OF_FIRE, true, 3500)
+            creature:CastCustomSpell(all_targets[sample_targets[i]], Spells.RAIN_OF_FIRE, true, 4000)
         end
     end
     
 end
 
 function Gehennas.ShadowBolt(eventId, delay, calls, creature)
-    creature:CastCustomSpell(creature:GetVictim(), Spells.SHADOW_BOLT, true, 3800)
+    creature:CastCustomSpell(creature:GetVictim(), Spells.SHADOW_BOLT, true, 4500)
 end
 
 function Gehennas.OnEnterCombat(event, creature, target)

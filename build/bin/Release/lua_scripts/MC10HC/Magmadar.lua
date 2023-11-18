@@ -27,9 +27,9 @@ function Magmadar.MagmaBomb(eventId, delay, calls, creature)
     creature:CastSpell(targets[2], Spells['MAGMA_BOMB_RANGED'], true)
 end
 function Magmadar.OnEnterCombat(event, creature, target)
-    creature:RegisterEvent(Magmadar.Frenzy, 15000, 0)
-    creature:RegisterEvent(Magmadar.Panic, 9500, 0)
-    creature:RegisterEvent(Magmadar.MagmaBomb, 12000, 0)
+    creature:RegisterEvent(Magmadar.Frenzy, {13000,17000}, 0)
+    creature:RegisterEvent(Magmadar.Panic, {22000,25000}, 0)
+    creature:RegisterEvent(Magmadar.MagmaBomb, {12000,15000}, 0)
 end
 
 function Magmadar.OnLeaveCombat(event, creature)

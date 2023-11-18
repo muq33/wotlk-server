@@ -18,12 +18,9 @@ function Garr.AntiMagicPulse(eventId,delay,calls, creature)
 end
 
 function Garr.MagmaShackles(eventId, delay, calls, creature)
-    creature:CastSpell(creature:GetVictim(),Garr_Spells.MagmaShackles, true)
+    creature:CastSpell(creature:GetVictim(),Garr_Spells.MAGMA_SHACKLES, true)
 end
 
-function Garr.SeparationAnxiety(eventId, delay, calls, creature)
-    creature:CastSpell(nil, Garr_Spells.SEPARATION_ANXIETY, true)
-end
 
 function Garr.Frenzy(eventId, delay, calls, creature)
     creature:CastSpell(nil, Garr_Spells.FRENZY, true)
@@ -60,7 +57,7 @@ RegisterCreatureEvent(Garr.id, 4, Garr.OnDied)
 ---Adds---
 
 local Fireworn = {
-    id = 9000007
+    id = 9000008
 }
 local Fireworn_Spells={
 
@@ -75,7 +72,7 @@ end
 
 
 function Fireworn.OnEnterCombat(event, creature, target)
-    creature:CastSpell(nil, Fireworn_Spells.SEPARATION_ANXIETY, true)
+    creature:CastSpell(creature, Fireworn_Spells.SEPARATION_ANXIETY_MINION, true)
     -- creature:RegisterEvent(Fireworn.SeparationAnxiety, 12000, 0)
 end
 
