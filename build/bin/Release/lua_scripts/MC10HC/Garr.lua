@@ -28,7 +28,7 @@ end
 
 
 function Garr.OnEnterCombat(event, creature, target)
-    creature:CastSpell(nil, Garr_Spells.SEPARATION_ANXIETY, true)
+    creature:CastSpell(nil, Garr_Spells.SEPARATION_ANXIETY, true) --talvez precise ser refeito
     creature:RegisterEvent(Garr.Frenzy, 30000, 0)
     creature:RegisterEvent(Garr.AntiMagicPulse, 15000, 0)
     creature:RegisterEvent(Garr.MagmaShackles, 10000, 0)
@@ -56,42 +56,53 @@ RegisterCreatureEvent(Garr.id, 4, Garr.OnDied)
 
 ---Adds---
 
-local Fireworn = {
+local Firesworn = {
     id = 9000008
 }
-local Fireworn_Spells={
+local Firesworn_Spells={
 
     SEPARATION_ANXIETY_MINION     = 23492,    -- Increases damage done by 300% and applied banish immunity
     ERUPTION                      = 19497,    -- Deals fire aoe damage and knockbacks nearby enemies
     MASSIVE_ERUPTION              = 20483    -- Deals fire aoe damage, knockbacks nearby enemies and kills caster
 }
 
-function Fireworn.Eruption(eventId,delay,calls, creature)
-    creature:CastSpell(creature:GetVictim(), Fireworn_Spells.ANTIMAGIC_PULSE, true)
+function Firesworn.Eruption(eventId,delay,calls, creature)
+    creature:CastSpell(creature:GetVictim(), Firesworn_Spells.ANTIMAGIC_PULSE, true)
 end
 
-
-function Fireworn.OnEnterCombat(event, creature, target)
-    creature:CastSpell(creature, Fireworn_Spells.SEPARATION_ANXIETY_MINION, true)
-    -- creature:RegisterEvent(Fireworn.SeparationAnxiety, 12000, 0)
+function Firesworn.SeparationAnxiety(event, creature, attacker, damage)
+    local InRange = creature:GetCreaturesInRange(20, 9000006)
+    local index, Garr = pairs(InRange)
+    if Garr == nil then
+        creature:CastSpell(creature, Firesworn_Spells.SEPARATION_ANXIETY_MINION, true)
+    
+    else
+        creature:RemoveAura(Firesworn_Spells.SEPARATION_ANXIETY_MINION)
+    end
+end
+function Firesworn.OnEnterCombat(event, creature, target)
+    creature:CastSpell(creature, Firesworn_Spells.SEPARATION_ANXIETY_MINION, true)
+    -- creature:RegisterEvent(Firesworn.SeparationAnxiety, 12000, 0)
 end
 
-function Fireworn.OnLeaveCombat(event, creature)
+function Firesworn.OnLeaveCombat(event, creature)
     creature:RemoveEvents()
 end
 
-function Fireworn.OnDied(event, creature, killer)
-    creature:CastCustomSpell(nil, Fireworn_Spells.MASSIVE_ERUPTION, true, 7324)
+
+function Firesworn.OnDied(event, creature, killer)
+    creature:CastCustomSpell(nil, Firesworn_Spells.MASSIVE_ERUPTION, true, 7324)
     creature:RemoveEvents()
 end
 
--- function Fireworn.CheckHealth(event, creature)
+-- function Firesworn.CheckHealth(event, creature)
 --    if (creature:HealthBelowPct(20)) then
---        creature:SendUnitYell("Fireworn want to play!", 0)
+--        creature:SendUnitYell("Firesworn want to play!", 0)
 --       creature:CastSpell(creature, 41305, true)
 --    end
 --end
 
-RegisterCreatureEvent(Fireworn.id, 1, Fireworn.OnEnterCombat)
-RegisterCreatureEvent(Fireworn.id, 2, Fireworn.OnLeaveCombat)
-RegisterCreatureEvent(Fireworn.id, 4, Fireworn.OnDied)
+RegisterCreatureEvent(Firesworn.id, 1, Firesworn.OnEnterCombat)
+RegisterCreatureEvent(Firesworn.id, 2, Firesworn.OnLeaveCombat)
+RegisterCreatureEvent(Firesworn.id, 4, Firesworn.OnDied)
+RegisterCreatureEvent(Firesworn.id, 9, Firesworn.SeparationAnxiety)
