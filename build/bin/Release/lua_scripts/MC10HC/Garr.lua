@@ -11,6 +11,7 @@ local Garr_Spells =
     MAGMA_SHACKLES                = 19496,    -- Reduces the movement speed of nearby enemies by 60%
     SEPARATION_ANXIETY            = 23487,    -- Aura cast on himself by Garr, if adds move out of range, they will cast spell 23492 on themselves (server side)
     FRENZY                        = 19516,    -- Increases the caster's attack speed by 9 + scale. Stacks up to 10 times
+    MAGMASPLASH                   = 13879
 };
 
 function Garr.AntiMagicPulse(eventId,delay,calls, creature)
@@ -26,6 +27,9 @@ function Garr.Frenzy(eventId, delay, calls, creature)
     creature:CastSpell(nil, Garr_Spells.FRENZY, true)
 end
 
+function Garr.OnDamageTaken(event, creature, attacker, damage)
+    creature:CastCustomSpell(attacker, Garr_Spells.MAGMASPLASH, true)
+end
 
 function Garr.OnEnterCombat(event, creature, target)
     creature:CastSpell(nil, Garr_Spells.SEPARATION_ANXIETY, true) --talvez precise ser refeito

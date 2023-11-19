@@ -105,10 +105,12 @@ end
 
 function BaronGeddon.OnLeaveCombat(event, creature)
     creature:RemoveEvents()
+    first_health_heck = false
 end
 
 function BaronGeddon.OnDied(event, creature, killer)
     creature:RemoveEvents()
+    first_health_heck = false
 end
 
 RegisterCreatureEvent(BaronGeddon.id, 1, BaronGeddon.OnEnterCombat)
