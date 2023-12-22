@@ -50,12 +50,14 @@ function Majordomo.Teleport(eventId,delay,calls, creature)
     local all_targets = creature:GetAITargets()
     if(#all_targets < 2)then
         creature:CastSpell(all_targets[1], Spells.TELEPORT_RANDOM, true)
+        creature:ClearThreatList()
     else
-        local sample_targets = sample(1,#all_targets, 3)
+        local sample_targets = sample(2,#all_targets, 3)
 
         for i=1,#sample_targets do
             creature:CastSpell(all_targets[i], Spells.TELEPORT_RANDOM, true)
         end
+        
     end
 end
 function Majordomo.LivingBomb(eventId,delay,calls, creature)
@@ -103,6 +105,7 @@ end
 
 RegisterCreatureEvent(Majordomo.id, 1, Majordomo.OnEnterCombat)
 RegisterCreatureEvent(Majordomo.id, 2, Majordomo.OnLeaveCombat)
+RegisterCreatureEvent(Majordomo.id, 9, Majordomo.PhaseSelector)
 RegisterCreatureEvent(Majordomo.id, 4, Majordomo.OnDied)
 
 -----------------------------------------------------------------------------------
@@ -114,18 +117,45 @@ local Flamewaker_Elite = {
 
 
 local Flamewaker_Elite_Spells = {
-    SHADOW_SHOCK        = 20603,
-    FIRE_BLAST          = 20623,
-    FIREBALL            = 20420,
-    SHADOW_BOLT         = 21077
+    SHADOW_SHOCK              = 20603,
+    FIRE_BLAST                = 20623,
+    FIREBALL                  = 20420,
+    SEPARATION_ANXIETY_MINION = 23492,
+    SHADOW_BOLT               = 21077
 }
 
 
 function Flamewaker_Elite.ShadowShock(eventId, delay, calls, creature)
-    creature:CastSpell(creature:GetVictim(), Flamewaker_Elite_Spells.SHADOW_SHOCK, true)
+    creature:CastCustomSpell(creature:GetVictim(), Flamewaker_Elite_Spells.SHADOW_SHOCK, true, 2500)
+end
+function Flamewaker_Elite.FireBlast(eventId, delay, calls, creature)
+    creature:CastCustomSpell(creature:GetVictim(), Flamewaker_Elite_Spells.FIRE_BLAST, true, 2850)
+end
+function Flamewaker_Elite.FireShadow(eventId, delay, calls, creature)
+    local which_to_cast = math.random(1,2)
+    local target = creature:GetAITarget(1,true,0,45)
+    if(which_to_cast == 1) then
+        creature:CastCustomSpell(target, Flamewaker_Elite_Spells.SHADOW_BOLT, true, 2650)
+    else
+        creature:CastCustomSpell(target, Flamewaker_Elite_Spells.FIREBALL, true, 2650)
+    end
+    
+end
+
+function Flamewaker_Elite.SeparationAnxiety(event, creature, attacker, damage)
+    local InRange = creature:GetCreaturesInRange(20, 9000014)
+    local index, Majordomo = pairs(InRange)
+    if Majordomo == nil then
+        creature:CastSpell(creature, Flamewaker_Elite_Spells.SEPARATION_ANXIETY_MINION, true)
+    
+    else
+        creature:RemoveAura(Flamewaker_Elite_Spells.SEPARATION_ANXIETY_MINION)
+    end
 end
 function Flamewaker_Elite.OnEnterCombat(event, creature, target)
-    creature:RegisterEvent(Flamewaker_Elite_Spells.FistOfRagnaros, 10000, 0)
+    creature:RegisterEvent(Flamewaker_Elite.ShadowShock, {10000, 12000}, 0)
+    creature:RegisterEvent(Flamewaker_Elite.FireBlast, 14000, 0)
+    creature:RegisterEvent(Flamewaker_Elite.FireShadow, {18000, 21000}, 0)
 end
 
 function Flamewaker_Elite.OnLeaveCombat(event, creature)
@@ -142,3 +172,4 @@ end
 RegisterCreatureEvent(Flamewaker_Elite.id, 1, Flamewaker_Elite.OnEnterCombat)
 RegisterCreatureEvent(Flamewaker_Elite.id, 2, Flamewaker_Elite.OnLeaveCombat)
 RegisterCreatureEvent(Flamewaker_Elite.id, 4, Flamewaker_Elite.OnDied)
+RegisterCreatureEvent(Flamewaker_Elite.id, 7, Flamewaker_Elite.SeparationAnxiety)
