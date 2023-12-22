@@ -6,6 +6,19 @@ Bem-vindo ao repositório do servidor World of Warcraft baseado em AzerothCore! 
 
 [AzerothCore](https://www.azerothcore.org/) é um núcleo de servidor privado de World of Warcraft que oferece uma estrutura robusta e escalável para desenvolver servidores personalizados. Baseado no código-fonte do jogo original, AzerothCore fornece uma plataforma flexível para criar experiências únicas no mundo de Azeroth.
 
+## Sobre este projeto
+Este projeto visa a criação de uma versão customizada de WOTLK, com upscale de conteúdo legado para o nível atual.
+
+## Roadmap
+- [ ] Fase 1
+   - [x] Naxxramas
+   - [x] Molten Core (Quase feito)
+   - [ ] Items/quests lendárias
+ - [ ] Fase 2
+   - [ ] Gruul's Lair
+   - [ ] Magtheridon's Lair
+   - [ ] ?
+ - [ ] Fase 3
 ## Recursos Principais
 
 - **Flexibilidade:** Customize o jogo conforme suas preferências, adicione novos conteúdos, ajuste a mecânica do jogo e crie seu próprio universo WoW.
