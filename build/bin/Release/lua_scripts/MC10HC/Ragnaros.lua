@@ -231,6 +231,10 @@ function Ragnaros.BigAdd(eventId, delay, calls, creature)
     creature:SpawnCreature(9000033, 842.627747, -848.687866, -229.252960,
         6.174773, 5)
 end
+function Ragnaros.SpellSubmerge(eventId, delay, calls, creature)
+    creature:CastSpell(creature, Ragnaros_Spells.SPELL_RAGSUBMERGE, 0)
+    creature:CastSpell(creature, Ragnaros_Spells.SPELL_RAGNA_SUBMERGE_VISUAL, 0)
+end
 
 function Ragnaros.Phase1(eventId, delay, calls, creature)
     creature:RegisterEvent(Ragnaros.MoltenArmor, { 5000, 6500 }, 0)
@@ -240,10 +244,7 @@ function Ragnaros.Phase1(eventId, delay, calls, creature)
     creature:RegisterEvent(Ragnaros.LivingBomb, 25000, 0)
 end
 
-function Ragnaros.SpellSubmerge(eventId, delay, calls, creature)
-    creature:CastSpell(creature, Ragnaros_Spells.SPELL_RAGSUBMERGE, 0)
-    creature:CastSpell(creature, Ragnaros_Spells.SPELL_RAGNA_SUBMERGE_VISUAL, 0)
-end
+
 
 function Ragnaros.Submerge(eventId, delay, calls, creature)
     if (creature:HealthBelowPct(50)) then
@@ -306,6 +307,49 @@ function Ragnaros.OnLeaveCombat(event, creature)
     delete_creatures(9000033, creature)
     Ragnaros.iterator_soft_enrage = 1
     Ragnaros.iterator_fill_outer_room = { 0, 0, 0, 0, 0 }
+    Room_Positions = {
+        { --outer peninsula
+            { x = 888.5654,  y = -822.6207,  z = -227.25616 },
+            { x = 885.01117, y = -812.58484, z = -227.37985 },
+            { x = 881.2909,  y = -802.08014, z = -227.0577 },
+            { x = 874.6447,  y = -790.73395, z = -228.1221 },
+            { x = 867.4266,  y = -783.3646,  z = -225.5519 }
+        },
+        { -- main region for casters
+            { x = 849.56854, y = -782.8838,  z = -226.26355 },
+            { x = 848.34076, y = -772.5193,  z = -226.01945 },
+            { x = 846.74133, y = -760.4427,  z = -224.65933 },
+            { x = 838.2128,  y = -782.8808,  z = -226.47266 },
+            { x = 835.93823, y = -771.5737,  z = -225.31023 },
+            { x = 825.72455, y = -784.6865,  z = -226.43077 },
+            { x = 821.8541,  y = -772.5161,  z = -225.24982 },
+            { x = 817.30756, y = -788.9423,  z = -225.9666 },
+            { x = 811.48846, y = -778.94696, z = -225.50755 }
+        },
+        { --outer ring pt 1
+            { x = 808.4837,  y = -792.2695,  z = -225.91455 },
+            { x = 802.46094, y = -800.231,   z = -226.09541 },
+            { x = 796.67847, y = -794.9483,  z = -225.78217 },
+            { x = 796.1789,  y = -808.9653,  z = -226.18301 },
+            { x = 788.60144, y = -804.5304,  z = -225.4195 },
+            { x = 794.1029,  y = -815.956,   z = -226.4164 },
+            { x = 784.5382,  y = -813.06177, z = -225.25691 }
+        },
+        { --outer peninsula (closer to boss)
+            { x = 841.21216, y = -889.92694, z = -220.05331 },
+            { x = 826.49664, y = -886.91376, z = -225.86658 },
+            { x = 814.48975, y = -882.2229,  z = -225.56216 },
+            { x = 803.0041,  y = -874.5759,  z = -226.30994 },
+        },
+        {
+            { x = 794.7161, y = -822.6237,  z = -226.8463 },
+            { x = 780.4607, y = -825.4778,  z = -225.95474 },
+            { x = 795.6017, y = -837.37756, z = -228.48352 },
+            { x = 799.9522, y = -849.23364, z = -227.61377 },
+            { x = 800.9506, y = -860.29065, z = -226.83542 },
+    
+        }
+    }
     creature:RemoveEvents()
 end
 
@@ -318,6 +362,49 @@ function Ragnaros.OnDied(event, creature, killer)
     Ragnaros.iterator_soft_enrage = 1
     Ragnaros.iterator_fill_outer_room = { 0, 0, 0, 0, 0 }
     creature:PlayDirectSound(7555)
+    Room_Positions = {
+        { --outer peninsula
+            { x = 888.5654,  y = -822.6207,  z = -227.25616 },
+            { x = 885.01117, y = -812.58484, z = -227.37985 },
+            { x = 881.2909,  y = -802.08014, z = -227.0577 },
+            { x = 874.6447,  y = -790.73395, z = -228.1221 },
+            { x = 867.4266,  y = -783.3646,  z = -225.5519 }
+        },
+        { -- main region for casters
+            { x = 849.56854, y = -782.8838,  z = -226.26355 },
+            { x = 848.34076, y = -772.5193,  z = -226.01945 },
+            { x = 846.74133, y = -760.4427,  z = -224.65933 },
+            { x = 838.2128,  y = -782.8808,  z = -226.47266 },
+            { x = 835.93823, y = -771.5737,  z = -225.31023 },
+            { x = 825.72455, y = -784.6865,  z = -226.43077 },
+            { x = 821.8541,  y = -772.5161,  z = -225.24982 },
+            { x = 817.30756, y = -788.9423,  z = -225.9666 },
+            { x = 811.48846, y = -778.94696, z = -225.50755 }
+        },
+        { --outer ring pt 1
+            { x = 808.4837,  y = -792.2695,  z = -225.91455 },
+            { x = 802.46094, y = -800.231,   z = -226.09541 },
+            { x = 796.67847, y = -794.9483,  z = -225.78217 },
+            { x = 796.1789,  y = -808.9653,  z = -226.18301 },
+            { x = 788.60144, y = -804.5304,  z = -225.4195 },
+            { x = 794.1029,  y = -815.956,   z = -226.4164 },
+            { x = 784.5382,  y = -813.06177, z = -225.25691 }
+        },
+        { --outer peninsula (closer to boss)
+            { x = 841.21216, y = -889.92694, z = -220.05331 },
+            { x = 826.49664, y = -886.91376, z = -225.86658 },
+            { x = 814.48975, y = -882.2229,  z = -225.56216 },
+            { x = 803.0041,  y = -874.5759,  z = -226.30994 },
+        },
+        {
+            { x = 794.7161, y = -822.6237,  z = -226.8463 },
+            { x = 780.4607, y = -825.4778,  z = -225.95474 },
+            { x = 795.6017, y = -837.37756, z = -228.48352 },
+            { x = 799.9522, y = -849.23364, z = -227.61377 },
+            { x = 800.9506, y = -860.29065, z = -226.83542 },
+    
+        }
+    }
     creature:RemoveEvents()
 end
 

@@ -55,7 +55,7 @@ function Gehennas.ShadowBolt(eventId, delay, calls, creature)
 end
 
 function Gehennas.OnEnterCombat(event, creature, target)
-    creature:RegisterEvent(Gehennas.GehennasCurse, {6000, 9000}, 0)
+    creature:RegisterEvent(Gehennas.GehennasCurse, {15000, 18000}, 0)
     creature:RegisterEvent(Gehennas.RainfOfFire, 15000, 0)
     creature:RegisterEvent(Gehennas.ShadowBolt, {3000, 5000}, 0)
 end
