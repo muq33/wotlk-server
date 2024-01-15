@@ -74,7 +74,7 @@ function Gluth.EnrageEmpower(eventId, delay, calls, creature)
     creature:CastSpell(creature, Gluth_Spells.ENRAGE, true)
 end
 
-function Gluth.CheckDecimate(eventId,removeId, delay, calls, creature )
+function Gluth.CheckDecimate(eventId, delay, calls, creature )
     if (creature:HealthBelowPct(20)) then
         creature:SendUnitYell("Gluth is Mad!", 0)
 
