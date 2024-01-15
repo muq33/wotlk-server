@@ -1,4 +1,6 @@
-local Gluth = {}
+local Gluth = {
+    id = 15932
+}
 local PoisonGas = {}
 --Gluth (cachorro otário) boss_gluth.cpp
 --20% da vida do boss
@@ -75,4 +77,4 @@ function Gluth.CheckDecimate(eventId,removeId, delay, calls, creature )
     end
 end
 
-RegisterCreatureEvent(16028, 1, Gluth.OnEnterCombat)
+RegisterCreatureEvent(Gluth.id, 1, Gluth.OnEnterCombat)
