@@ -1,3 +1,6 @@
+--- Imports ---
+loadfile("Utils.lua")
+
 --- Main boss ---
 local Gehennas = {
     id = 9000003
@@ -9,26 +12,13 @@ local Spells = {
     SHADOW_BOLT           = 19729 --Precisa ser refeita
 }
 
-local  function sample (i, j, n)
-    local result = {}
-    local temp = setmetatable( {}, meta )
-    for k = 1, n do
-      local idx = math.random( i, j )
-      local v = temp[ idx ]
-      temp[ idx ] = temp[ i ]
-      result[ k ] = v
-      i = i + 1
-    end
-    return result
- end
-
 -----------------------------------------------------------------------------------
 function Gehennas.GehennasCurse(eventId,delay,calls, creature)
     local all_targets = creature:GetAITargets()
     if(#all_targets < 2)then
         creature:CastSpell(all_targets[1], Spells.GEHENNAS_CURSE, true)
     else
-        local sample_targets = sample(1,#all_targets, 2)
+        local sample_targets = sample(1,#all_targets, math.min(2, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastSpell(all_targets[sample_targets[i]], Spells.GEHENNAS_CURSE, true)
@@ -41,7 +31,7 @@ function Gehennas.RainfOfFire(eventId, delay, calls, creature)
     if(#all_targets < 2)then
         creature:CastCustomSpell(all_targets[1], Spells.RAIN_OF_FIRE, true, 4000)
     else
-        local sample_targets = sample(1,#all_targets, 2)
+        local sample_targets = sample(1,#all_targets, math.min(2, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastCustomSpell(all_targets[sample_targets[i]], Spells.RAIN_OF_FIRE, true, 4000)

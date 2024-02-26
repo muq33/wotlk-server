@@ -1,3 +1,7 @@
+--- Imports ---
+loadfile("Utils.lua")
+
+
 local Lucifron = {
     id = 9000002
 }
@@ -8,18 +12,6 @@ local Spells = {
     SHADOW_SHOCK      = 20603,
 }
 
-local  function sample (i, j, n)
-    local result = {}
-    local temp = setmetatable( {}, meta )
-    for k = 1, n do
-      local idx = math.random( i, j )
-      local v = temp[ idx ]
-      temp[ idx ] = temp[ i ]
-      result[ k ] = v
-      i = i + 1
-    end
-    return result
- end
 
 -----------------------------------------------------------------------------------
 function Lucifron.ImpendingDoom(eventId,delay,calls, creature)
@@ -40,7 +32,7 @@ function Lucifron.LucrifronCurse(eventId, delay, calls, creature)
     if(#all_targets < 2)then
         creature:CastSpell(all_targets[1], Spells.LUCIFRON_CURSE, true)
     else
-        local sample_targets = sample(1,#all_targets, 2)
+        local sample_targets = sample(1,#all_targets, math.min(2, #all_targets-1))
         for i=1,#sample_targets do
             creature:CastSpell(all_targets[sample_targets[i]], Spells.LUCIFRON_CURSE, true)
         end
@@ -53,9 +45,9 @@ function Lucifron.ShadowShock(eventId, delay, calls, creature)
 end
 
 function Lucifron.OnEnterCombat(event, creature, target)
-    creature:RegisterEvent(Lucifron.ImpendingDoom, {6000, 11000}, 0)
-    creature:RegisterEvent(Lucifron.LucrifronCurse, {11000, 14000}, 0)
-    creature:RegisterEvent(Lucifron.ShadowShock, 5000, 0)
+    creature:RegisterEvent(Lucifron.ImpendingDoom, {8000, 15000}, 0)
+    creature:RegisterEvent(Lucifron.LucrifronCurse, {13000, 17000}, 0)
+    creature:RegisterEvent(Lucifron.ShadowShock, 9000, 0)
 end
 
 function Lucifron.OnLeaveCombat(event, creature)

@@ -1,3 +1,5 @@
+--- Imports ---
+loadfile("Utils.lua")
 
 ---Boss---
 local BaronGeddon = {
@@ -15,26 +17,15 @@ local BaronGeddon_Spells =
 };
 
 local first_health_heck = false
-local  function sample (i, j, n)
-    local result = {}
-    local temp = setmetatable( {}, meta )
-    for k = 1, n do
-      local idx = math.random( i, j )
-      local v = temp[ idx ]
-      temp[ idx ] = temp[ i ]
-      result[ k ] = v
-      i = i + 1
-    end
-    return result
- end
+
 
 function BaronGeddon.LivingBomb(eventId,delay,calls, creature)
     local all_targets = creature:GetAITargets()
     if(#all_targets < 2)then
         creature:CastSpell(all_targets[1], BaronGeddon_Spells.LIVING_BOMB, true)
     else
-        local all_targets = creature:GetAITarget(1, true)
-        local sample_targets = sample(2,#all_targets, 2)
+        --local all_targets = creature:GetAITarget(1, true)
+        local sample_targets = sample(1,#all_targets, math.min(2, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastSpell(all_targets[sample_targets[i]], BaronGeddon_Spells.LIVING_BOMB, true)
@@ -51,8 +42,8 @@ function BaronGeddon.IgniteMana(eventId, delay, calls, creature)
     if(#all_targets < 2)then
         creature:CastSpell(all_targets[1], BaronGeddon_Spells.IGNITE_MANA, true)
     else
-        local all_targets = creature:GetAITarget(1, true)
-        local sample_targets = sample(2,#all_targets, 2)
+        --local all_targets = creature:GetAITarget(1, true)
+        local sample_targets = sample(1,#all_targets, math.min(2, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastSpell(all_targets[sample_targets[i]], BaronGeddon_Spells.IGNITE_MANA, true)
@@ -65,7 +56,7 @@ function BaronGeddon.RainOfFire(eventId, delay, calls, creature)
     if(#all_targets < 2)then
         creature:CastCustomSpell(all_targets[1], BaronGeddon_Spells.RAIN_OF_FIRE, true, 4000)
     else
-        local sample_targets = sample(2,#all_targets, 3)
+        local sample_targets = sample(1,#all_targets, math.min(3, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastCustomSpell(all_targets[sample_targets[i]], BaronGeddon_Spells.RAIN_OF_FIRE, true, 4000)
@@ -91,7 +82,7 @@ function BaronGeddon.CheckHealth(event, creature, attacker, damage)
         if(#all_targets < 2)then
             creature:CastCustomSpell(all_targets[1], BaronGeddon_Spells.RAIN_OF_FIRE, true, 4000)
         else
-            local sample_targets = sample(2,#all_targets, 3)
+            local sample_targets = sample(1,#all_targets, math.min(3, #all_targets-1))
 
             for i=1,#sample_targets do
                 creature:CastCustomSpell(all_targets[sample_targets[i]], BaronGeddon_Spells.RAIN_OF_FIRE, true, 4000)

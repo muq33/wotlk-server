@@ -1,4 +1,6 @@
-local Gluth = {}
+local Gluth = {
+    id = 15932  
+}
 local PoisonGas = {}
 --Gluth (cachorro otário) boss_gluth.cpp
 --20% da vida do boss
@@ -23,7 +25,7 @@ local Gluth_Spells =
     MORTAL_WOUNDS_SPECIAL       = 20000, -- Pestilence, go for another group, plague
     ENRAGE                      = 54427,
     MOVING_GAS_CREATURE         = 12000,
-    DECIMATE                    = 28375,
+    DECIMATE                    = 71123,
     ZOMBIE_CHOW_CREATURE        = 16360,
     --SPELL_RAGNAROS_SUBMERGE_EFFECT          = 21859,
 };
@@ -67,6 +69,26 @@ function Gluth.OnEnterCombat(event, creature, target)
     creature:RegisterEvent(Gluth.EnrageEmpower, Gluth_Spells_Times.ENRAGE, 0)
     creature:RegisterEvent(Gluth.CheckDecimate, Gluth_Spells_Times.DECIMATE, 0)
 end
+function Gluth.OnLeaveCombat(event, creature)
+    -- Array of yell options
+    local yellOption = "No more play?"
+    -- Sends the selected yell message
+    creature:SendUnitYell(yellOption, 0)
+    -- Removes any registered events
+    creature:RemoveEvents()
+end
+
+-- This function is called when Patchwerk dies.
+function Gluth.OnDied(event, creature, killer)
+    -- Sends a yell message ("What... happen to-")
+    creature:SendUnitYell("What... happen to-", 0)
+    -- Sends a broadcast message to the player who killed Patchwerk
+    if (killer:GetObjectType() == "Player") then
+        killer:SendBroadcastMessage("You killed " .. creature:GetName() .. "!")
+    end
+    -- Removes any registered events
+    creature:RemoveEvents()
+end
 
 function Gluth.EnrageEmpower(eventId, delay, calls, creature)
     creature:SendUnitYell("Gluth is Wung!", 0)
@@ -74,7 +96,7 @@ function Gluth.EnrageEmpower(eventId, delay, calls, creature)
     creature:CastSpell(creature, Gluth_Spells.ENRAGE, true)
 end
 
-function Gluth.CheckDecimate(eventId,removeId, delay, calls, creature )
+function Gluth.CheckDecimate(eventId, delay, calls, creature)
     if (creature:HealthBelowPct(20)) then
         creature:SendUnitYell("Gluth is Mad!", 0)
 
@@ -84,4 +106,6 @@ function Gluth.CheckDecimate(eventId,removeId, delay, calls, creature )
     end
 end
 
-RegisterCreatureEvent(16028, 1, Gluth.OnEnterCombat)
+RegisterCreatureEvent(Gluth.id, 1, Gluth.OnEnterCombat)
+RegisterCreatureEvent(Gluth.id, 2, Gluth.OnLeaveCombat)
+RegisterCreatureEvent(Gluth.id, 4, Gluth.OnDied)

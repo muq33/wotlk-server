@@ -1,3 +1,6 @@
+--- Imports ---
+loadfile("Utils.lua")
+
 local Shazzrah = {
     id = 9000009
 }
@@ -31,16 +34,15 @@ function Shazzrah.ShazzrahGate(eventId, delay, calls, creature)
         creature:CastCustomSpell(creature, Spells_Shazzrah.ARCANE_EXPLOSION, false, 2500)
         creature:CastSpell(creature:GetVictim(), Spells_Shazzrah.SHAZZRAH_GATE, true)
     else
-        local all_targets = creature:GetAITarget(1, true)
-        local sample_target = all_targets[math.random(2,#all_targets)]
+        local sample_target = all_targets[math.random(1,#all_targets)]
         creature:CastCustomSpell(creature, Spells_Shazzrah.ARCANE_EXPLOSION, false, 2500)
         creature:CastSpell(sample_target, Spells_Shazzrah.SHAZZRAH_GATE, true)
     end
 end
 function Shazzrah.OnEnterCombat(event, creature, target)
-    creature:RegisterEvent(Shazzrah.ArcaneExplosion, {4000, 5000}, 0)
+    creature:RegisterEvent(Shazzrah.ArcaneExplosion, {7000, 9000}, 0)
     creature:RegisterEvent(Shazzrah.ShazzrahCurse, {23000, 26000}, 0)
-    creature:RegisterEvent(Shazzrah.MagicGrounding, {7000, 9000}, 0)
+    creature:RegisterEvent(Shazzrah.MagicGrounding, {12000, 13000}, 0)
     creature:RegisterEvent(Shazzrah.ShazzrahGate, 30000, 0)
 end
 

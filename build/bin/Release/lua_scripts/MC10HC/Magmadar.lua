@@ -5,8 +5,8 @@ local Magmadar = {
 local Spells = {
     FRENZY = 19451,
     PANIC = 19408,
-    MAGMA_BOMB = 19411, --Precisa ser refeita
-    MAGMA_BOMB_RANGED = 20474--Precisa ser refeita
+    MAGMA_BOMB = 19411, 
+    MAGMA_BOMB_RANGED = 20474
 }
 
 function Magmadar.Frenzy(eventId,delay,calls, creature)
@@ -28,8 +28,8 @@ function Magmadar.MagmaBomb(eventId, delay, calls, creature)
 end
 function Magmadar.OnEnterCombat(event, creature, target)
     creature:RegisterEvent(Magmadar.Frenzy, {13000,17000}, 0)
-    creature:RegisterEvent(Magmadar.Panic, {22000,25000}, 0)
-    creature:RegisterEvent(Magmadar.MagmaBomb, {12000,15000}, 0)
+    creature:RegisterEvent(Magmadar.Panic, {37000,44000}, 0)
+    creature:RegisterEvent(Magmadar.MagmaBomb, {19000,21000}, 0)
 end
 
 function Magmadar.OnLeaveCombat(event, creature)
@@ -40,14 +40,8 @@ function Magmadar.OnDied(event, creature, killer)
     creature:RemoveEvents()
 end
 
--- function Magmadar.CheckHealth(event, creature)
---    if (creature:HealthBelowPct(20)) then
---        creature:SendUnitYell("Magmadar want to play!", 0)
---       creature:CastSpell(creature, 41305, true)
---    end
---end
 
 RegisterCreatureEvent(Magmadar.id, 1, Magmadar.OnEnterCombat)
 RegisterCreatureEvent(Magmadar.id, 2, Magmadar.OnLeaveCombat)
 RegisterCreatureEvent(Magmadar.id, 4, Magmadar.OnDied)
--- RegisterCreatureEvent(16028, 5, Magmadar.CheckHealth)
+
