@@ -1,3 +1,6 @@
+--- Imports ---
+loadfile("Utils.lua")
+
 --- Main boss ---
 local Majordomo = {
     id = 9000014
@@ -16,19 +19,6 @@ local Spells = {
     SEPARATION_ANXIETY_MINION         = 21095,
 }
 local Phase_Indicators = {0,0}
-local  function sample (i, j, n)
-    local result = {}
-    local temp = setmetatable( {}, meta )
-    for k = 1, n do
-      local idx = math.random( i, j )
-      local v = temp[ idx ]
-      temp[ idx ] = temp[ i ]
-      result[ k ] = v
-      i = i + 1
-    end
-    return result
- end
-
 -----------------------------------------------------------------------------------
 function Majordomo.Reflection(eventId,delay,calls, creature)
     local which_to_cast = math.random(1,2)
@@ -52,12 +42,12 @@ function Majordomo.Teleport(eventId,delay,calls, creature)
         creature:CastSpell(all_targets[1], Spells.TELEPORT_RANDOM, true)
         creature:ClearThreatList()
     else
-        local sample_targets = sample(2,#all_targets, 3)
+        local sample_targets = sample(1,#all_targets, math.min(3, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastSpell(all_targets[i], Spells.TELEPORT_RANDOM, true)
         end
-        
+        creature:ClearThreatList()
     end
 end
 function Majordomo.LivingBomb(eventId,delay,calls, creature)
@@ -65,8 +55,7 @@ function Majordomo.LivingBomb(eventId,delay,calls, creature)
     if(#all_targets < 2)then
         creature:CastSpell(all_targets[1], Spells.LIVING_BOMB, true)
     else
-        local all_targets = creature:GetAITarget(1, true)
-        local sample_targets = sample(2,#all_targets, 2)
+        local sample_targets = sample(1,#all_targets, math.min(2, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastSpell(all_targets[sample_targets[i]], Spells.LIVING_BOMB, true)

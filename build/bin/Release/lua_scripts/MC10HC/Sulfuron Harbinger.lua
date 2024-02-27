@@ -1,3 +1,5 @@
+--- Imports ---
+loadfile("Utils.lua")
 
 ---Boss---
 local SulfuronHarbinger = {
@@ -14,18 +16,6 @@ local SulfuronHarbinger_Spells =
     FLAMESPEAR            = 19781
 }
 
-local  function sample (i, j, n)
-    local result = {}
-    local temp = setmetatable( {}, meta )
-    for k = 1, n do
-      local idx = math.random( i, j )
-      local v = temp[ idx ]
-      temp[ idx ] = temp[ i ]
-      result[ k ] = v
-      i = i + 1
-    end
-    return result
-end
 
 function SulfuronHarbinger.Knockdown(eventId,delay,calls, creature)
     creature:CastCustomSpell(creature, SulfuronHarbinger_Spells.KNOCKDOWN, true, nil, nil, 6800)
@@ -38,16 +28,15 @@ end
 function SulfuronHarbinger.Flamespear(eventId, delay, calls, creature)
     local all_targets = creature:GetAITargets()
     if(#all_targets < 2)then
-        creature:CastCustomSpell(all_targets[1],SulfuronHarbinger_Spells.FLAMESPEAR, true, 8100)
+        creature:CastCustomSpell(all_targets[1],SulfuronHarbinger_Spells.FLAMESPEAR, true, 6100  + math.random(-250, 250))
     else
-        local all_targets = creature:GetAITarget(1, true)
-        local sample_targets = sample(2,#all_targets, 2)
+        local sample_targets = sample(1,#all_targets, math.min(3, #all_targets-1))
 
         for i=1,#sample_targets do
-            creature:CastCustomSpell(all_targets[1],SulfuronHarbinger_Spells.FLAMESPEAR, true, 8100)
+            creature:CastCustomSpell(all_targets[1],SulfuronHarbinger_Spells.FLAMESPEAR, true, 6100 + math.random(-150,150))
         end
     end
-        creature:CastCustomSpell(creature,SulfuronHarbinger_Spells.FLAMESPEAR, true, 8100)
+    --creature:CastCustomSpell(creature, SulfuronHarbinger_Spells.FLAMESPEAR, true, 8100)
     
 end
 
@@ -95,16 +84,11 @@ function FlamewakerPriest.DarkMending(eventId,delay,calls, creature)
         for index, SulfuronH in pairs(InRange) do
             creature:CastCustomSpell(SulfuronH, FlamewakerPriest_Spells.DARK_MENDING, false, SulfuronH:GetMaxHealth()/10)
         end
-        
-       
-    
     elseif which_to_cast == 2 then
         local InRange = creature:GetCreaturesInRange(45, 9000013)
         for index, Priest in pairs(InRange) do
             creature:CastCustomSpell(Priest, FlamewakerPriest_Spells.DARK_MENDING, false, Priest:GetMaxHealth()/10)
         end
-       
-
     end
 
 end
@@ -113,7 +97,7 @@ function FlamewakerPriest.ShadowWordPain(eventId,delay,calls, creature)
     if(#all_targets < 2)then
         creature:CastCustomSpell(all_targets[1], FlamewakerPriest_Spells.SHADOW_WORD_PAIN, true, 110)
     else
-        local sample_targets = sample(1,#all_targets, 3)
+        local sample_targets = sample(1,#all_targets, math.min(3, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastCustomSpell(all_targets[sample_targets[i]], FlamewakerPriest_Spells.SHADOW_WORD_PAIN, true, 110)
@@ -129,7 +113,7 @@ function FlamewakerPriest.Immolate(eventId,delay,calls, creature)
     if(#all_targets < 2)then
         creature:CastCustomSpell(all_targets[1], FlamewakerPriest_Spells.IMMOLATE, true, 900, 1200)
     else
-        local sample_targets = sample(1,#all_targets, 2)
+        local sample_targets = sample(1,#all_targets, math.min(2, #all_targets-1))
 
         for i=1,#sample_targets do
             creature:CastCustomSpell(all_targets[sample_targets[i]], FlamewakerPriest_Spells.IMMOLATE, true, 900, 1200)

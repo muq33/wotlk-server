@@ -1,3 +1,5 @@
+--- Imports ---
+loadfile("Utils.lua")
 
 ---Boss---
 local Golemagg = {
@@ -19,25 +21,13 @@ local CoreRager_Spells={
     SUICIDE               = 13520,
     TRUST_AURA            = 28131
 }
-local  function sample (i, j, n)
-    local result = {}
-    local temp = setmetatable( {}, meta )
-    for k = 1, n do
-      local idx = math.random( i, j )
-      local v = temp[ idx ]
-      temp[ idx ] = temp[ i ]
-      result[ k ] = v
-      i = i + 1
-    end
-    return result
-end
 
 function Golemagg.Pyroblast(eventId,delay,calls, creature)
     local all_targets = creature:GetAITargets()
     if(#all_targets < 2)then
         creature:CastCustomSpell(all_targets[1], Golemagg_Spells.PYROBLAST, true, 5900, 1000)
     else
-        local sample_targets = sample(1,#all_targets, 2)
+        local sample_targets = sample(1,#all_targets, math.min(2, #all_targets-1))
         for i=1,#sample_targets do
             creature:CastCustomSpell(all_targets[1], Golemagg_Spells.PYROBLAST, true, 5900, 1000)
         end

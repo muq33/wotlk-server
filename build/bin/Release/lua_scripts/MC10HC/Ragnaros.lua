@@ -1,3 +1,7 @@
+--- Imports ---
+loadfile("Utils.lua")
+
+
 ---Boss---
 local Ragnaros = {
     id = 9000028,
@@ -98,19 +102,6 @@ local function slice(tbl, indexes, discart_value)
     else
         return new
     end
-end
-
-local function sample(i, j, n)
-    local result = {}
-    local temp = setmetatable({}, meta)
-    for k = 1, n do
-        local idx = math.random(i, j)
-        local v = temp[idx]
-        temp[idx] = temp[i]
-        result[k] = v
-        i = i + 1
-    end
-    return result
 end
 
 local function sample_r(star, en, n)

@@ -54,12 +54,12 @@ end
 function BaronGeddon.RainOfFire(eventId, delay, calls, creature)
     local all_targets = creature:GetAITargets()
     if(#all_targets < 2)then
-        creature:CastCustomSpell(all_targets[1], BaronGeddon_Spells.RAIN_OF_FIRE, true, 4000)
+        creature:CastCustomSpell(all_targets[1], BaronGeddon_Spells.RAIN_OF_FIRE, true, 3000 + math.random(-250, 250))
     else
         local sample_targets = sample(1,#all_targets, math.min(3, #all_targets-1))
 
         for i=1,#sample_targets do
-            creature:CastCustomSpell(all_targets[sample_targets[i]], BaronGeddon_Spells.RAIN_OF_FIRE, true, 4000)
+            creature:CastCustomSpell(all_targets[sample_targets[i]], BaronGeddon_Spells.RAIN_OF_FIRE, true, 3000 + math.random(-250, 250))
         end
     end
 end
@@ -80,12 +80,12 @@ function BaronGeddon.CheckHealth(event, creature, attacker, damage)
         creature:RemoveEvents()
         local all_targets = creature:GetAITargets()
         if(#all_targets < 2)then
-            creature:CastCustomSpell(all_targets[1], BaronGeddon_Spells.RAIN_OF_FIRE, true, 4000)
+            creature:CastCustomSpell(all_targets[1], BaronGeddon_Spells.RAIN_OF_FIRE, true, 3000 + math.random(-250, 250))
         else
             local sample_targets = sample(1,#all_targets, math.min(3, #all_targets-1))
 
             for i=1,#sample_targets do
-                creature:CastCustomSpell(all_targets[sample_targets[i]], BaronGeddon_Spells.RAIN_OF_FIRE, true, 4000)
+                creature:CastCustomSpell(all_targets[sample_targets[i]], BaronGeddon_Spells.RAIN_OF_FIRE, true, 3000 + math.random(-250, 250))
             end
         end
         creature:RegisterEvent(BaronGeddon.RainOfFire, 5000, 0)
