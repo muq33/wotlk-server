@@ -36,6 +36,7 @@ local Gluth_Spells =
 local Gluth_Spells_Times = 
 {
     MORTAL_WOUNDS               = 10000,
+    MOVING_GAS_SPAWN            = 20000,
     ENRAGE                      = 22000,
     DECIMATE                    = 500,
 }
@@ -47,6 +48,7 @@ local poisonGasPosition = {
     {x = 3308.294678, y = -3131.699463, z = 350.969086, spawned = false, creature_ref = nil}
 }
 
+--PoisonGas
 function PoisonGas.SpawnZombie(eventId, delay, calls, creature)
     local x, y, z, o = creature:GetLocation()
     creature:SpawnCreature(ZombieChowCreature.id,         
@@ -55,7 +57,6 @@ function PoisonGas.SpawnZombie(eventId, delay, calls, creature)
     z, 0, 5);
 end
 
---PoisonGas
 function PoisonGas.OnSpawn(event, creature)
     creature:RegisterEvent(PoisonGas.SpawnZombie, PoisonGas_Times.ZOMBIE_CHOW_CREATURE, 0)
 end
