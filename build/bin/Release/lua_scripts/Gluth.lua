@@ -1,5 +1,6 @@
-local Gluth = {}
+local Gluth = {id = 15932}
 local PoisonGas = {}
+
 --Gluth (cachorro otário) boss_gluth.cpp
 --20% da vida do boss
 --< 20% da vida, a cada 5s bufa os bichin dele
@@ -15,6 +16,9 @@ local PoisonGas = {}
 --MAS, se Gluth tiver 50% < vai em direção ao Gluth, mais rápido
 
 --1s ele come bichos zombiezinhos perto dele
+
+--Sumona as posion cloud / poças baseado em porcentagem de vida, deixa de ser randomico.
+--VETOR DE TRUE (has been spawned)
 
 
 local Gluth_Spells =
@@ -37,7 +41,12 @@ local Gluth_Spells_Times =
 }
 
 --DEFINE "BLOCKS" FOR POISON SPAWN
-
+local poisonGasPosition = {
+    {x = 3308.393066, y = -3184.520996, z = 350.969086},
+    {x = 3267.750977, y = -3171.457520, z = 350.969482},
+    {x = 3256.010742, y = -3130.549072, z = 350.969482},
+    {x = 3308.294678, y = -3131.699463, z = 350.969086}
+}
 --
 local availableBlockPositions;
 
@@ -84,4 +93,14 @@ function Gluth.CheckDecimate(eventId, delay, calls, creature )
     end
 end
 
-RegisterCreatureEvent(16028, 1, Gluth.OnEnterCombat)
+function Gluth.OnLeaveCombat(event, creature)
+    creature:RemoveEvents()
+end
+
+function Gluth.OnDied(event, creature, killer)
+    creature:RemoveEvents()
+end
+
+RegisterCreatureEvent(Gluth.id, 1, Gluth.OnEnterCombat)
+RegisterCreatureEvent(Gluth.id, 2, Gluth.OnLeaveCombat)
+RegisterCreatureEvent(Gluth.id, 4, Gluth.OnDied)
