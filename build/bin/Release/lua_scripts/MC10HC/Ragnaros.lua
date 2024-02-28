@@ -147,7 +147,6 @@ function Ragnaros.LivingBomb(eventId, delay, calls, creature)
                 creature:CastSpell(targets[sample_targets[i]], Ragnaros_Spells.LIVING_BOMB, true)
             end
         end
-            
     end
 end
 

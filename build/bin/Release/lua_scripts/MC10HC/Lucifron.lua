@@ -41,7 +41,7 @@ function Lucifron.LucrifronCurse(eventId, delay, calls, creature)
 end
 
 function Lucifron.ShadowShock(eventId, delay, calls, creature)
-    creature:CastCustomSpell(creature:GetVictim(), Spells.SHADOW_SHOCK, true, 4500 + math.random(-250, 250))
+    creature:CastCustomSpell(creature:GetVictim(), Spells.SHADOW_SHOCK, true, damage_calc(4100))
 end
 
 function Lucifron.OnEnterCombat(event, creature, target)

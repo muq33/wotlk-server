@@ -22,3 +22,11 @@ function dump(o)
      return tostring(o)
   end
 end
+
+function damage_calc(num)
+   return num + math.random(-num/20, num/20)
+end
+
+function calculate_targets(num_desired, num_targets)
+   return math.min(num_desired, num_targets-1)
+end
