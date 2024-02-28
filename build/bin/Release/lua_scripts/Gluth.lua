@@ -30,13 +30,12 @@ local Gluth_Spells =
     MORTAL_WOUNDS_SPECIAL       = 20000, -- Pestilence, go for another group, plague
     ENRAGE                      = 54427,
     DECIMATE                    = 28375,
-    --SPELL_RAGNAROS_SUBMERGE_EFFECT          = 21859,
 };
 
 local Gluth_Spells_Times = 
 {
     MORTAL_WOUNDS               = 10000,
-    MOVING_GAS_SPAWN            = 20000,
+    POISON_GAS_CHECK_LIFE       = 500,
     ENRAGE                      = 22000,
     DECIMATE                    = 500,
 }
@@ -47,6 +46,16 @@ local poisonGasPosition = {
     {x = 3256.010742, y = -3130.549072, z = 350.969482, spawned = false, creature_ref = nil},
     {x = 3308.294678, y = -3131.699463, z = 350.969086, spawned = false, creature_ref = nil}
 }
+
+local poisonGasSpawned = 0;
+
+--if < health (40% 3 poisonGas) 
+--poisonGasSpawned qtd - poisonGasSpawned.QTD Spawna
+
+--80, 60, 40, 20
+--1 , 2 , 3 , 4 (qtd spawn)
+--poisonGasSpawned.QTD < qtd spawn (SPAWNO)
+--caso contrário faz nada
 
 --PoisonGas
 function PoisonGas.SpawnZombie(eventId, delay, calls, creature)
@@ -81,16 +90,28 @@ end
 --Gluth
 function Gluth.SpawnPoisonGas(eventId, delay, calls, creature)
     --Summon at a random non occupied in the map 
-    local poisonGas = FindNotSpawnedPosition(poisonGasPosition)
+    local qtd = math.floor((100 - creature:GetHealthPct()) / 20)
 
-    if  poisonGas == nil then
+    if(qtd <= poisonGasSpawned) then
         return
     end
-    
-    creature:SpawnCreature(PoisonGas.id,         
-        poisonGas.x,
-        poisonGas.y,
-        poisonGas.z, 0, 5);
+
+    for i=1, qtd - poisonGasSpawned do
+        local poisonGas = FindNotSpawnedPosition(poisonGasPosition)
+
+        if  poisonGas == nil then
+            return
+        end
+        
+        poisonGas.creatureRef = creature:SpawnCreature(PoisonGas.id,         
+            poisonGas.x,
+            poisonGas.y,
+            poisonGas.z, 0, 5);
+
+        poisonGas.spawned = true;
+    end
+
+    poisonGasSpawned = qtd;
 end
 
 function FindNotSpawnedPosition(positions)
@@ -117,6 +138,8 @@ function CleanAll()
         pos.spawned = false
         pos.creature_ref:Kill(pos.creature_ref)
     end
+
+    poisonGasSpawned = 0;
 end
 
 function Gluth.MortalWounds(eventId, delay, calls, creature)
