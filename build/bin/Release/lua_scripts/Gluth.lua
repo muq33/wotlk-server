@@ -154,7 +154,7 @@ end
 
 
 function Gluth.OnEnterCombat(event, creature, target)
-    creature:RegisterEvent(Gluth.SpawnPoisonGas, Gluth_Spells_Times.MOVING_GAS_SPAWN, 0)
+    creature:RegisterEvent(Gluth.SpawnPoisonGas, Gluth_Spells_Times.POISON_GAS_CHECK_LIFE, 0)
     creature:RegisterEvent(Gluth.MortalWounds, Gluth_Spells_Times.MORTAL_WOUNDS, 0)
     creature:RegisterEvent(Gluth.EnrageEmpower, Gluth_Spells_Times.ENRAGE, 0)
     creature:RegisterEvent(Gluth.CheckDecimate, Gluth_Spells_Times.DECIMATE, 0)
