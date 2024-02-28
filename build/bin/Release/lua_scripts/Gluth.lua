@@ -136,7 +136,10 @@ end
 function CleanAll()
     for i, pos in ipairs(poisonGasPosition) do
         pos.spawned = false
-        pos.creature_ref:Kill(pos.creature_ref)
+
+        if (pos.creature_ref ~= nil) then
+            pos.creature_ref:Kill(pos.creature_ref)
+        end
     end
 
     poisonGasSpawned = 0;
