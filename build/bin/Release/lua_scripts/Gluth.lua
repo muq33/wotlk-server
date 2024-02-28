@@ -159,27 +159,6 @@ function Gluth.OnEnterCombat(event, creature, target)
     creature:RegisterEvent(Gluth.EnrageEmpower, Gluth_Spells_Times.ENRAGE, 0)
     creature:RegisterEvent(Gluth.CheckDecimate, Gluth_Spells_Times.DECIMATE, 0)
 end
-function Gluth.OnLeaveCombat(event, creature)
-    -- Array of yell options
-    local yellOption = "No more play?"
-    -- Sends the selected yell message
-    creature:SendUnitYell(yellOption, 0)
-    -- Removes any registered events
-    creature:RemoveEvents()
-end
-
--- This function is called when Patchwerk dies.
-function Gluth.OnDied(event, creature, killer)
-    -- Sends a yell message ("What... happen to-")
-    creature:SendUnitYell("What... happen to-", 0)
-    -- Sends a broadcast message to the player who killed Patchwerk
-    if (killer:GetObjectType() == "Player") then
-        killer:SendBroadcastMessage("You killed " .. creature:GetName() .. "!")
-    end
-    -- Removes any registered events
-    creature:RemoveEvents()
-end
-
 function Gluth.EnrageEmpower(eventId, delay, calls, creature)
     creature:SendUnitYell("Gluth is Wung!", 0)
     --Cast empowering in himself
