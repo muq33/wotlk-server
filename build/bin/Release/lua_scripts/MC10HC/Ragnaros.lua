@@ -90,33 +90,7 @@ local Trap_Pos = {
     { x = 849.682190, y = -855.827515, z = -228.829956 }
 }
 
-local function slice(tbl, indexes, discart_value)
-    local new = {}
-    for i = 1, #indexes do
-        if indexes[i] ~= discart_value then
-            new[i] = tbl[i]
-        end
-    end
-    if new == {} then
-        return nil
-    else
-        return new
-    end
-end
 
-local function sample_r(star, en, n)
-    local random_numbers = {}
-    for i = 1, n, 1 do
-        random_numbers[i] = math.random(star, en)
-    end
-    return random_numbers
-end
-local function delete_creatures(id, creature)
-    local InRange = creature:GetCreaturesInRange(100, id)
-    for index, Mob in pairs(InRange) do
-        Mob:Kill(Mob)
-    end
-end
 
 function Ragnaros.LivingBomb(eventId, delay, calls, creature)
     local targets = creature:GetAITargets()
@@ -163,7 +137,7 @@ function Ragnaros.NoTank(eventId, delay, calls, creature)
         creature:SendUnitYell(yell, 0)
         creature:PlayDirectSound(8046)
         creature:CastCustomSpell(creature:GetVictim(), Ragnaros_Spells.PYROBLAST,
-            true, 9000, 3000)
+            true, damage_calc(6000), 3000)
     end
 end
 
@@ -558,7 +532,7 @@ end
 function SonOfFlame.Fireball(eventId, delay, calls, creature)
     local players = creature:GetPlayersInRange()
     creature:CastCustomSpell(players[math.random(1, #players)],
-        SonOfFlame_Spells.FIREBALL, false, 1500)
+        SonOfFlame_Spells.FIREBALL, false, damage_calc(1200))
 end
 
 function SonOfFlame.OnCombat(event, creature, target)
