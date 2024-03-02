@@ -189,8 +189,6 @@ public:
                     }
                     events.Repeat(1s);
                     break;
-                case EVENT_SUMMON_OOZE:
-                    //criar as spells de summon pra 10 e 25 man
             }
             DoMeleeAttackIfReady();
         }
